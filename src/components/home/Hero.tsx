@@ -6,10 +6,12 @@ import styles from './Hero.module.css';
 /** Stagger index for the entrance animation. */
 const step = (i: number) => ({ '--i': i }) as CSSProperties;
 
-export default function Hero() {
+export type HeroLayout = 'overlap' | 'between' | 'stagger';
+
+export default function Hero({ layout = 'overlap' }: { layout?: HeroLayout }) {
   return (
     <>
-      <section id="hero" className={styles.hero} aria-labelledby="hero-title">
+      <section id="hero" className={styles.hero} data-layout={layout} aria-labelledby="hero-title">
         <div className={styles.sky} aria-hidden="true" />
         <span className={`${styles.cloud} ${styles.cloud1}`} aria-hidden="true" />
         <span className={`${styles.cloud} ${styles.cloud2}`} aria-hidden="true" />
@@ -20,13 +22,12 @@ export default function Hero() {
         </p>
 
         <h1 id="hero-title" className={styles.title}>
-          <span className={`${styles.titleBig} ${styles.rise}`} style={step(1)}>
+          <span className={`${styles.word} ${styles.word1} ${styles.rise}`} style={step(1)}>
             Comfortable
-            <br />
-            Breathing.
           </span>{' '}
-          <span className={`${styles.tag} ${styles.rise}`} style={step(3)}>
-            Anytime. Anywhere.
+          <span className={styles.gap} aria-hidden="true" />
+          <span className={`${styles.word} ${styles.word2} ${styles.rise}`} style={step(2)}>
+            Breathing.
           </span>
         </h1>
 
@@ -40,6 +41,10 @@ export default function Hero() {
             sizes="(max-width: 900px) 100vw, 78vh"
           />
         </div>
+
+        <p className={`${styles.tag} ${styles.rise}`} style={step(3)}>
+          Anytime. Anywhere.
+        </p>
 
         <div className={`${styles.ctas} ${styles.rise}`} style={step(4)}>
           <Button href="/checkout" variant="light">

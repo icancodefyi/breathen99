@@ -2,6 +2,7 @@
    Hero — atmospheric sky, oversized headline, floating can
    ========================================================= */
 .hero {
+  --can-w: min(72svh, 96vw); /* rendered width of the square can image */
   position: relative;
   isolation: isolate;
   overflow: clip;
@@ -92,10 +93,13 @@
   text-shadow: 0 2px 54px rgba(12, 40, 80, 0.3);
 }
 
-.titleBig {
+.word {
   position: relative;
-  z-index: 1; /* sits behind the can */
+  z-index: 1; /* behind the can in the overlap layout */
   display: block;
+}
+.gap {
+  display: none;
 }
 
 .tag {
@@ -116,7 +120,7 @@
   left: 50%;
   top: 49%;
   z-index: 2;
-  width: min(72svh, 96vw);
+  width: var(--can-w);
   transform: translate(-50%, -44%) rotate(-5deg);
   animation: canIn 1.3s var(--ease-out) 0.15s backwards;
   filter: drop-shadow(0 46px 40px rgba(10, 36, 72, 0.4));
@@ -274,6 +278,56 @@
   .can,
   .cloud {
     animation: none;
+  }
+}
+
+/* ---------- Desktop layout variants (temporary comparison) ---------- */
+@media (min-width: 901px) {
+  /* Shared: the headline is centred on the can instead of flowing under the eyebrow. */
+  .hero[data-layout='between'] .title,
+  .hero[data-layout='stagger'] .title {
+    position: absolute;
+    left: 50%;
+    top: 49%;
+    transform: translate(-50%, -50%);
+    width: min(100%, var(--container));
+    margin: 0;
+    padding-inline: var(--gutter);
+    text-wrap: nowrap;
+    white-space: nowrap;
+  }
+
+  /* B — one line, the can sits between the two words. Nothing is covered. */
+  .hero[data-layout='between'] .title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: calc(var(--can-w) * 0.2);
+    font-size: clamp(2.6rem, min(7vw, 12.5svh), 9rem);
+  }
+  .hero[data-layout='between'] .gap {
+    display: block;
+  }
+  .hero[data-layout='between'] .word {
+    display: block;
+  }
+
+  /* C — staggered: first word top-left, second word bottom-right, the can in the middle. */
+  .hero[data-layout='stagger'] .title {
+    display: grid;
+    grid-template-columns: 1fr calc(var(--can-w) * 0.54) 1fr;
+    row-gap: calc(var(--can-w) * 0.34);
+    font-size: clamp(2.6rem, min(6.9vw, 12svh), 9rem);
+  }
+  .hero[data-layout='stagger'] .word1 {
+    grid-column: 1;
+    grid-row: 1;
+    text-align: left;
+  }
+  .hero[data-layout='stagger'] .word2 {
+    grid-column: 3;
+    grid-row: 2;
+    text-align: right;
   }
 }
 
