@@ -4,9 +4,17 @@ import './globals.css';
 import '../styles/design.css';
 import { siteConfig } from '@/config/site';
 
+// Legacy fonts below are used only by checkout/thank-you, so they are not preloaded.
 // Self-hosted at build time: no request to Google from the visitor's browser.
-const bebas = Bebas_Neue({ subsets: ['latin'], weight: '400', display: 'swap', variable: '--nf-bebas' });
+const bebas = Bebas_Neue({
+  preload: false,
+  subsets: ['latin'],
+  weight: '400',
+  display: 'swap',
+  variable: '--nf-bebas',
+});
 const cormorant = Cormorant_Garamond({
+  preload: false,
   subsets: ['latin'],
   weight: ['300', '400'],
   style: ['normal', 'italic'],
@@ -14,6 +22,7 @@ const cormorant = Cormorant_Garamond({
   variable: '--nf-cormorant',
 });
 const dmSans = DM_Sans({
+  preload: false,
   subsets: ['latin'],
   weight: ['300', '400', '500'],
   style: ['normal', 'italic'],
@@ -21,6 +30,7 @@ const dmSans = DM_Sans({
   variable: '--nf-dm-sans',
 });
 const playfair = Playfair_Display({
+  preload: false,
   subsets: ['latin'],
   weight: ['700', '800'],
   style: ['normal', 'italic'],
@@ -50,10 +60,6 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={fontVars}>
-      <head>
-        <link rel="preload" href="/assets/logo-white.jpg" as="image" />
-        <link rel="preload" href="/assets/product.png" as="image" />
-      </head>
       <body>{children}</body>
     </html>
   );

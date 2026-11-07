@@ -1,0 +1,202 @@
+.reviews {
+  overflow: visible; /* override legacy `section { overflow: hidden }` */
+  padding: var(--section-y) 0;
+  background: var(--c-bg);
+}
+
+/* ---------- Header ---------- */
+.label {
+  display: block;
+  margin-bottom: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--c-ink-3);
+}
+.title {
+  margin: 0;
+  font-size: clamp(2.6rem, 5.6vw, 5.4rem);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.045em;
+  color: var(--c-ink);
+}
+.en {
+  color: var(--c-red);
+}
+
+/* ---------- Pull quotes ---------- */
+.pulls {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(24px, 4vw, 64px);
+  margin: clamp(48px, 7vw, 96px) 0 0;
+  padding: clamp(28px, 3vw, 40px) 0 0;
+  border-top: 1px solid var(--c-line);
+  list-style: none;
+}
+.pull blockquote {
+  margin: 0;
+}
+.pullQuote {
+  margin: 0;
+  font-size: clamp(1.7rem, 2.8vw, 2.7rem);
+  font-weight: 500;
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+  color: var(--c-ink);
+  text-indent: -0.42em; /* hang the opening quote mark */
+}
+.pullBy {
+  display: block;
+  margin-top: 18px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  color: var(--c-ink-3);
+}
+
+/* ---------- Full testimonials ---------- */
+.board {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: clamp(12px, 1.4vw, 18px);
+  margin-top: clamp(56px, 8vw, 112px);
+  padding: clamp(12px, 1.4vw, 18px);
+  border-radius: clamp(24px, 3vw, 40px);
+  background: var(--c-surface);
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 32px;
+  margin: 0;
+  padding: clamp(24px, 2.6vw, 38px);
+  border-radius: calc(var(--radius-card) - 4px);
+  background: #fff;
+}
+.card:nth-child(1) {
+  grid-column: span 7;
+  background: var(--c-ink);
+  color: #fff;
+}
+.card:nth-child(2) {
+  grid-column: span 5;
+}
+.card:nth-child(3) {
+  grid-column: span 5;
+}
+.card:nth-child(4) {
+  grid-column: span 7;
+}
+
+.cardText {
+  margin: 0;
+  font-size: clamp(1.15rem, 1.5vw, 1.4rem);
+  line-height: 1.45;
+  letter-spacing: -0.015em;
+  color: var(--c-ink);
+}
+.card:nth-child(1) .cardText {
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  font-weight: 500;
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+  color: #fff;
+}
+
+.who {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 14px;
+}
+.avatar {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #fff;
+}
+.card:nth-child(1) .avatar {
+  background: var(--b-1);
+}
+.card:nth-child(2) .avatar {
+  background: var(--b-2);
+}
+.card:nth-child(3) .avatar {
+  background: var(--b-3);
+}
+.card:nth-child(4) .avatar {
+  background: var(--b-4);
+}
+.name {
+  display: block;
+  font-size: 1rem;
+  font-weight: 600;
+  font-style: normal;
+}
+.role {
+  display: block;
+  font-size: 0.88rem;
+  color: var(--c-ink-3);
+}
+.card:nth-child(1) .role {
+  color: rgba(255, 255, 255, 0.6);
+}
+.tag {
+  margin-left: auto;
+  padding: 7px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--c-line-strong);
+  font-size: 0.76rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--c-ink-2);
+}
+.card:nth-child(1) .tag {
+  border-color: rgba(255, 255, 255, 0.25);
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* ---------- Closing band ---------- */
+.band {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px 48px;
+  margin-top: clamp(48px, 6vw, 88px);
+  padding: clamp(32px, 4.5vw, 64px);
+  border-radius: clamp(24px, 3vw, 40px);
+  color: #fff;
+  background: radial-gradient(70% 120% at 0% 100%, rgba(138, 20, 16, 0.55), transparent 60%), #0b0b0c;
+}
+.band p {
+  margin: 0;
+  max-width: 15em;
+  font-size: clamp(1.9rem, 4vw, 3.4rem);
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+}
+
+@media (max-width: 900px) {
+  .pulls {
+    grid-template-columns: 1fr;
+  }
+  .card:nth-child(n) {
+    grid-column: 1 / -1;
+  }
+  .band {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

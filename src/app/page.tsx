@@ -1,15 +1,11 @@
 import Nav from '@/components/layout/Nav';
-import FAQ from '@/components/sections/FAQ';
-import HeroAnimations from '@/components/sections/HeroAnimations';
 import Hero from '@/components/home/Hero';
 import About from '@/components/home/About';
 import WhoItHelps from '@/components/home/WhoItHelps';
 import Product from '@/components/home/Product';
-import CroStripTwo from '@/components/home/CroStripTwo';
-import QuoteMarquee from '@/components/home/QuoteMarquee';
 import Testimonials from '@/components/home/Testimonials';
+import Faq from '@/components/home/Faq';
 import FinalCta from '@/components/home/FinalCta';
-import Contact from '@/components/home/Contact';
 import SiteFooter from '@/components/home/SiteFooter';
 import StickyBuyBar from '@/components/home/StickyBuyBar';
 
@@ -22,19 +18,17 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ h
   return (
     <>
       <Nav />
-      <Hero layout={layout} />
-      <About />
-      <WhoItHelps />
-      <Product />
-      <CroStripTwo />
-      <QuoteMarquee />
-      <Testimonials />
-      <FAQ />
-      <FinalCta />
-      <Contact />
+      <main>
+        <Hero layout={layout} />
+        <About />
+        <WhoItHelps />
+        <Product />
+        <Testimonials />
+        <Faq />
+        <FinalCta />
+      </main>
       <SiteFooter />
       <StickyBuyBar />
-      <HeroAnimations />
     </>
   );
 }

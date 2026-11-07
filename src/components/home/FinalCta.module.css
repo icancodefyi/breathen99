@@ -1,0 +1,74 @@
+.cta {
+  overflow: visible;
+  padding: 0 0 var(--section-y);
+  background: var(--c-bg);
+}
+
+/* Bookend to the hero: the same sky, the can rising from below. */
+.panel {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: clamp(620px, 88svh, 900px);
+  padding: clamp(56px, 8vw, 112px) var(--gutter) 0;
+  border-radius: clamp(24px, 3vw, 40px);
+  text-align: center;
+  color: #fff;
+  background:
+    radial-gradient(60% 40% at 18% 14%, rgba(255, 255, 255, 0.34), transparent 70%),
+    radial-gradient(50% 34% at 86% 28%, rgba(255, 255, 255, 0.26), transparent 70%),
+    linear-gradient(180deg, #3b72aa 0%, #5f93c4 50%, #7fabd3 100%);
+}
+
+.glow {
+  position: absolute;
+  z-index: -1;
+  left: 50%;
+  bottom: -30%;
+  width: min(110%, 1100px);
+  aspect-ratio: 1;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(255, 255, 255, 0.36), transparent);
+}
+
+.eyebrow {
+  margin: 0 0 clamp(14px, 2vw, 22px);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.9);
+}
+.headline {
+  margin: 0;
+  font-size: clamp(3.2rem, 10vw, 10rem);
+  font-weight: 500;
+  line-height: 0.9;
+  letter-spacing: -0.055em;
+  text-shadow: 0 2px 50px rgba(12, 40, 80, 0.28);
+}
+.sub {
+  margin: 0.15em 0 clamp(24px, 3vw, 36px);
+  font-size: clamp(1.6rem, 3.6vw, 3.4rem);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.can {
+  position: relative;
+  z-index: 1;
+  width: min(560px, 92vw);
+  aspect-ratio: 1;
+  margin-top: auto;
+  margin-bottom: -22%;
+  transform: rotate(-5deg);
+  filter: drop-shadow(0 40px 40px rgba(10, 36, 72, 0.4));
+}
+.can img {
+  object-fit: contain;
+}

@@ -1,65 +1,67 @@
+import Button from '@/components/ui/Button';
+import Reveal from '@/components/ui/Reveal';
+import { pullQuotes, testimonials } from '@/content/home';
+import styles from './Testimonials.module.css';
+
+const initials = (name: string) =>
+  name
+    .replace(/,.*$/, '')
+    .split(' ')
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((w) => w[0].toUpperCase())
+    .join('');
+
 export default function Testimonials() {
   return (
-    <section id="testimonials" aria-label="Customer testimonials">
-      <div className="testimonials-header">
-        <span className="section-label" style={{ opacity: 1, textAlign: 'center', display: 'block' }}>
-          Real People. Real Breath.
-        </span>
-        <h2 className="testimonials-title">
-          What They Say About <em>breathEN</em>
-        </h2>
-      </div>
-      <div className="testimonials-grid">
-        <div
-          className="testimonial-card"
-          style={{ gridColumn: '1/-1', background: '#fff8f7', border: '1px solid rgba(232,38,10,.08)' }}
-        >
-          <span className="quote-mark">&ldquo;</span>
-          <p className="testimonial-text">Get your breath back almost immediately with breathEN.</p>
-          <div className="testimonial-author">
-            <span className="author-name">SS Patil</span>
-            <span className="author-title">Fire Officer</span>
-            <div className="fire-badge">🚒 Verified First Responder</div>
-          </div>
-        </div>
-        <div className="testimonial-card">
-          <span className="quote-mark">&ldquo;</span>
-          <p className="testimonial-text">
-            BreathEN reduces fatigue, gives a quick performance boost, and provides relief from smog and pollution.
-            It&apos;s an awesome product and works like magic, totally indispensable.
-          </p>
-          <div className="testimonial-author">
-            <span className="author-name">Imdad Fakhi</span>
-            <span className="author-title">breathEN User</span>
-          </div>
-        </div>
-        <div className="testimonial-card">
-          <span className="quote-mark">&ldquo;</span>
-          <p className="testimonial-text">
-            For years, stepping outside felt frightening. My breathing would get heavy, and I avoided walking
-            altogether. When my breathing starts to feel difficult, breathEN gives me comfort and support. It helps me
-            calm down, breathe easier, and regain confidence to continue.
-          </p>
-          <div className="testimonial-author">
-            <span className="author-name">Rabiya Bi, 68 years</span>
-            <span className="author-title">Has Chronic Asthma</span>
-          </div>
-        </div>
-        <div
-          className="testimonial-card"
-          style={{ gridColumn: '1/-1', background: 'rgba(232,38,10,.04)', border: '1px solid rgba(232,38,10,.12)' }}
-        >
-          <span className="quote-mark">&ldquo;</span>
-          <p className="testimonial-text">
-            Hospital visit avoided — just because breathEN supported their breathing immediately after evacuating the
-            building. They were able to breathe normally again with only 10–12 shots.
-          </p>
-          <div className="testimonial-author">
-            <span className="author-name">Anonymous Housewife</span>
-            <span className="author-title">Fire Incident Evacuee</span>
-            <div className="fire-badge">🏥 Hospital Visit Avoided</div>
-          </div>
-        </div>
+    <section id="testimonials" className={styles.reviews} aria-labelledby="testimonials-title">
+      <div className="ds-container">
+        <Reveal>
+          <span className={styles.label}>Real People. Real Breath.</span>
+          <h2 id="testimonials-title" className={styles.title}>
+            What They Say About breath<span className={styles.en}>EN</span>
+          </h2>
+        </Reveal>
+
+        <Reveal>
+          <ul className={styles.pulls}>
+            {pullQuotes.map((q) => (
+              <li key={q.by} className={styles.pull}>
+                <blockquote>
+                  <p className={styles.pullQuote}>&ldquo;{q.quote}&rdquo;</p>
+                </blockquote>
+                <span className={styles.pullBy}>{q.by}</span>
+              </li>
+            ))}
+          </ul>
+        </Reveal>
+
+        <Reveal className={styles.board}>
+          {testimonials.map((t) => (
+            <figure key={t.name} className={styles.card}>
+              <blockquote style={{ margin: 0 }}>
+                <p className={styles.cardText}>{t.text}</p>
+              </blockquote>
+              <figcaption className={styles.who}>
+                <span className={styles.avatar} aria-hidden="true">
+                  {initials(t.name)}
+                </span>
+                <span>
+                  <cite className={styles.name}>{t.name}</cite>
+                  <span className={styles.role}>{t.title}</span>
+                </span>
+                {t.tag && <span className={styles.tag}>{t.tag}</span>}
+              </figcaption>
+            </figure>
+          ))}
+        </Reveal>
+
+        <Reveal className={styles.band}>
+          <p>Upto 200 Shots. Zero Side Effects. One Deep Breath Away.</p>
+          <Button href="/checkout" variant="light">
+            Order breathEN →
+          </Button>
+        </Reveal>
       </div>
     </section>
   );
