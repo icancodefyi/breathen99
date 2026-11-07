@@ -186,3 +186,17 @@ export const faqs = [
     a: 'Yes! We collaborate with athletes & fitness professionals, corporate wellness programs, gyms & sports academies, and lifestyle & wellness brands. Contact us at info@breathen99.com or call +91 9819250202.',
   },
 ];
+
+/** Studio shots of the can — one entry per image in /public/assets/brand/gallery. */
+export const galleryShots = [
+  { src: '/assets/brand/gallery/view-01.webp', alt: 'breathEN 99% pure oxygen canister — studio view 01' },
+  { src: '/assets/brand/gallery/view-02.webp', alt: 'breathEN 99% pure oxygen canister — studio view 02' },
+  { src: '/assets/brand/gallery/view-03.webp', alt: 'breathEN 99% pure oxygen canister — studio view 03' },
+  { src: '/assets/brand/gallery/view-04.webp', alt: 'breathEN 99% pure oxygen canister — studio view 04' },
+  { src: '/assets/brand/gallery/view-05.webp', alt: 'breathEN 99% pure oxygen canister — studio view 05' },
+  { src: '/assets/brand/gallery/view-06.webp', alt: 'breathEN 99% pure oxygen canister — studio view 06' },
+  { src: '/assets/brand/gallery/view-07.webp', alt: 'breathEN 99% pure oxygen canister — studio view 07' },
+  { src: '/assets/brand/gallery/view-08.webp', alt: 'breathEN 99% pure oxygen canister — studio view 08' },
+  { src: '/assets/brand/gallery/view-09.webp', alt: 'breathEN 99% pure oxygen canister — studio view 09' },
+  { src: '/assets/brand/gallery/view-10.webp', alt: 'breathEN 99% pure oxygen canister — studio view 10' },
+];

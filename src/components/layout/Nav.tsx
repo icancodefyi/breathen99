@@ -11,6 +11,7 @@ const LEFT = [
   { id: 'product', label: 'Product' },
 ] as const;
 const RIGHT = [
+  { id: 'gallery', label: 'Gallery' },
   { id: 'testimonials', label: 'Reviews' },
   { id: 'faq', label: 'FAQ' },
 ] as const;

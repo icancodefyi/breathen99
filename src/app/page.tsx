@@ -3,6 +3,7 @@ import Hero from '@/components/home/Hero';
 import About from '@/components/home/About';
 import WhoItHelps from '@/components/home/WhoItHelps';
 import Product from '@/components/home/Product';
+import Gallery from '@/components/home/Gallery';
 import Testimonials from '@/components/home/Testimonials';
 import Faq from '@/components/home/Faq';
 import FinalCta from '@/components/home/FinalCta';
@@ -23,6 +24,7 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ h
         <About />
         <WhoItHelps />
         <Product />
+        <Gallery />
         <Testimonials />
         <Faq />
         <FinalCta />
