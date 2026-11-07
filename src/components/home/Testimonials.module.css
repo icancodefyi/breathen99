@@ -26,43 +26,12 @@
   color: var(--c-red);
 }
 
-/* ---------- Pull quotes ---------- */
-.pulls {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: clamp(24px, 4vw, 64px);
-  margin: clamp(48px, 7vw, 96px) 0 0;
-  padding: clamp(28px, 3vw, 40px) 0 0;
-  border-top: 1px solid var(--c-line);
-  list-style: none;
-}
-.pull blockquote {
-  margin: 0;
-}
-.pullQuote {
-  margin: 0;
-  font-size: clamp(1.7rem, 2.8vw, 2.7rem);
-  font-weight: 500;
-  line-height: 1.08;
-  letter-spacing: -0.035em;
-  color: var(--c-ink);
-  text-indent: -0.42em; /* hang the opening quote mark */
-}
-.pullBy {
-  display: block;
-  margin-top: 18px;
-  font-size: 0.78rem;
-  font-weight: 500;
-  letter-spacing: 0.14em;
-  color: var(--c-ink-3);
-}
-
 /* ---------- Full testimonials ---------- */
 .board {
   display: grid;
-  grid-template-columns: repeat(12, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: clamp(12px, 1.4vw, 18px);
-  margin-top: clamp(56px, 8vw, 112px);
+  margin-top: clamp(40px, 6vw, 80px);
   padding: clamp(12px, 1.4vw, 18px);
   border-radius: clamp(24px, 3vw, 40px);
   background: var(--c-surface);
@@ -78,20 +47,6 @@
   border-radius: calc(var(--radius-card) - 4px);
   background: #fff;
 }
-.card:nth-child(1) {
-  grid-column: span 7;
-  background: var(--c-ink);
-  color: #fff;
-}
-.card:nth-child(2) {
-  grid-column: span 5;
-}
-.card:nth-child(3) {
-  grid-column: span 5;
-}
-.card:nth-child(4) {
-  grid-column: span 7;
-}
 
 .cardText {
   margin: 0;
@@ -99,13 +54,6 @@
   line-height: 1.45;
   letter-spacing: -0.015em;
   color: var(--c-ink);
-}
-.card:nth-child(1) .cardText {
-  font-size: clamp(1.8rem, 3vw, 2.8rem);
-  font-weight: 500;
-  line-height: 1.08;
-  letter-spacing: -0.035em;
-  color: #fff;
 }
 
 .who {
@@ -148,9 +96,6 @@
   font-size: 0.88rem;
   color: var(--c-ink-3);
 }
-.card:nth-child(1) .role {
-  color: rgba(255, 255, 255, 0.6);
-}
 .tag {
   margin-left: auto;
   padding: 7px 12px;
@@ -160,10 +105,6 @@
   font-weight: 500;
   letter-spacing: 0.04em;
   color: var(--c-ink-2);
-}
-.card:nth-child(1) .tag {
-  border-color: rgba(255, 255, 255, 0.25);
-  color: rgba(255, 255, 255, 0.85);
 }
 
 /* ---------- Closing band ---------- */
@@ -189,11 +130,8 @@
 }
 
 @media (max-width: 900px) {
-  .pulls {
+  .board {
     grid-template-columns: 1fr;
-  }
-  .card:nth-child(n) {
-    grid-column: 1 / -1;
   }
   .band {
     flex-direction: column;

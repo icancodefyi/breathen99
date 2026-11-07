@@ -66,26 +66,6 @@ export const howToSteps = [
   },
 ];
 
-/** The words from the old scrolling banner, in the same order. */
-export const brandTags = [
-  'BREATHE BETTER',
-  'LIVE STRONGER',
-  'URBAN LIFESTYLE',
-  'FITNESS READY',
-  'TRAVEL READY',
-  'ALTITUDE READY',
-  'NOSE BREATHING',
-  'LEAK PROOF',
-  'RECYCLABLE',
-];
-
-/** The three one-liners from the old scrolling quote banner (quotes added by the component). */
-export const pullQuotes = [
-  { quote: 'Works like magic, totally indispensable', by: 'IMDAD FAKHI' },
-  { quote: 'Get your breath back almost immediately', by: 'SS PATIL — FIRE OFFICER' },
-  { quote: 'Gives me comfort and support', by: 'RABIYA BI, 68' },
-];
-
 export const testimonials = [
   {
     text: 'Get your breath back almost immediately with breathEN.',

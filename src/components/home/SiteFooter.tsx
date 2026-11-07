@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import { siteConfig } from '@/config/site';
 import styles from './SiteFooter.module.css';
@@ -35,13 +34,9 @@ export default function SiteFooter() {
       <div className="ds-container">
         <div className={styles.top}>
           <div className={styles.brand}>
-            <Image
-              src="/assets/brand/logo-mark.png"
-              alt="breathEN logo"
-              width={1331}
-              height={265}
-              className={styles.logo}
-            />
+            <span className={styles.logo}>
+              breath<span className={styles.en}>EN</span>
+            </span>
             <p className={styles.blurb}>
               The world&apos;s first nose breathing oxygen canister. 99% pure recreational oxygen for urban living,
               fitness, travel, and beyond.
@@ -102,14 +97,9 @@ export default function SiteFooter() {
           </div>
         </div>
 
-        <Image
-          src="/assets/brand/logo-mark.png"
-          alt=""
-          width={1331}
-          height={265}
-          className={styles.mark}
-          sizes="(max-width: 1280px) 100vw, 1280px"
-        />
+        <p className={styles.mark} aria-hidden="true">
+          breath<span className={styles.en}>EN</span>
+        </p>
       </div>
     </footer>
   );

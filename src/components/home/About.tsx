@@ -1,8 +1,6 @@
 import Image from 'next/image';
-import Button from '@/components/ui/Button';
 import Reveal from '@/components/ui/Reveal';
 import AboutStatement from './AboutStatement';
-import { brandTags } from '@/content/home';
 import styles from './About.module.css';
 
 export default function About() {
@@ -116,21 +114,6 @@ export default function About() {
             </div>
           </Reveal>
         </div>
-
-        <Reveal>
-          <ul className={styles.tags}>
-            {brandTags.map((t) => (
-              <li key={t}>{t}</li>
-            ))}
-          </ul>
-
-          <div className={styles.cta}>
-            <p>Ready to Breathe Better? Order breathEN Today.</p>
-            <Button href="/checkout" variant="dark">
-              Get Your Can →
-            </Button>
-          </div>
-        </Reveal>
       </div>
     </section>
   );

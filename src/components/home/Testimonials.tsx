@@ -1,6 +1,6 @@
 import Button from '@/components/ui/Button';
 import Reveal from '@/components/ui/Reveal';
-import { pullQuotes, testimonials } from '@/content/home';
+import { testimonials } from '@/content/home';
 import styles from './Testimonials.module.css';
 
 const initials = (name: string) =>
@@ -21,19 +21,6 @@ export default function Testimonials() {
           <h2 id="testimonials-title" className={styles.title}>
             What They Say About breath<span className={styles.en}>EN</span>
           </h2>
-        </Reveal>
-
-        <Reveal>
-          <ul className={styles.pulls}>
-            {pullQuotes.map((q) => (
-              <li key={q.by} className={styles.pull}>
-                <blockquote>
-                  <p className={styles.pullQuote}>&ldquo;{q.quote}&rdquo;</p>
-                </blockquote>
-                <span className={styles.pullBy}>{q.by}</span>
-              </li>
-            ))}
-          </ul>
         </Reveal>
 
         <Reveal className={styles.board}>

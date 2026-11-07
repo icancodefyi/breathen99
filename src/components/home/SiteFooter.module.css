@@ -14,9 +14,14 @@
 
 .logo {
   display: block;
-  width: auto;
-  height: 30px;
   margin-bottom: 22px;
+  font-size: 1.9rem;
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  color: var(--c-ink);
+}
+.en {
+  color: var(--c-red);
 }
 .blurb {
   max-width: 26em;
@@ -106,12 +111,14 @@
 
 /* Oversized wordmark sign-off, cropped by the page edge */
 .mark {
-  display: block;
-  width: 100%;
-  height: auto;
-  margin-top: clamp(8px, 2vw, 24px);
-  transform: translateY(14%);
-  opacity: 0.95;
+  margin: clamp(8px, 2vw, 24px) 0 0;
+  font-size: clamp(5rem, 22vw, 20rem);
+  font-weight: 600;
+  line-height: 0.8;
+  letter-spacing: -0.06em;
+  color: var(--c-ink);
+  transform: translateY(12%);
+  white-space: nowrap;
 }
 
 @media (max-width: 900px) {
