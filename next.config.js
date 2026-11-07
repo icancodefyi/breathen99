@@ -40,7 +40,15 @@ const nextConfig = {
     formats: ['image/avif', 'image/webp'],
   },
   async headers() {
-    return [{ source: '/:path*', headers: securityHeaders }];
+    const privateArea = [
+      { key: 'X-Robots-Tag', value: 'noindex, nofollow' },
+      { key: 'Cache-Control', value: 'no-store' },
+    ];
+    return [
+      { source: '/:path*', headers: securityHeaders },
+      { source: '/admin/:path*', headers: privateArea },
+      { source: '/api/admin/:path*', headers: privateArea },
+    ];
   },
 };
 

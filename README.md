@@ -21,6 +21,11 @@ npm run dev             # http://localhost:3000
 | `MONGODB_DB` | server only | Database name (default `breathen99`) |
 | `RAZORPAY_KEY_SECRET` | server only | Verifies payment signatures, creates orders |
 | `RAZORPAY_WEBHOOK_SECRET` | server only | Verifies Razorpay webhooks |
+| `RESEND_API_KEY` | server only | Sends order emails via Resend (optional; emails skipped if unset) |
+| `EMAIL_FROM` | server only | Sender, e.g. `breathEN <orders@breathen99.com>` (domain verified in Resend) |
+| `ORDER_ALERT_EMAILS` | server only | Comma-separated founder emails that get a new-order alert |
+| `ADMIN_PASSWORD` | server only | Admin login password, 12+ characters (admin disabled if unset) |
+| `ADMIN_SESSION_SECRET` | server only | Signs admin session cookies, 32+ characters (`openssl rand -base64 48`) |
 
 Never commit real values. `.env.local` is gitignored; set production values in Vercel.
 
@@ -56,9 +61,25 @@ scripts/          CLI helpers
 3. After payment, `POST /api/orders/verify` checks the Razorpay signature and marks the order `paid`.
 4. `POST /api/webhooks/razorpay` independently confirms payment (and rejects amount mismatches). It is the source of truth if the browser closes early.
 
+## Emails
+
+When a payment is confirmed (by the browser verify call or the webhook, whichever arrives first), the customer gets an order
+confirmation and `ORDER_ALERT_EMAILS` get a new-order alert. Each email is claimed atomically in MongoDB, so it is sent at most
+once even if both paths race; a failed send releases the claim so a later attempt can retry. Sending happens after the HTTP
+response, and never blocks or fails a payment.
+
+## Admin (`/admin`)
+
+Password-protected orders dashboard: totals, search and filters, order detail, fulfilment status and notes, and CSV export
+(replaces the old Google Sheet). Sessions are signed, `HttpOnly`, `SameSite=Strict` cookies that last 8 hours; login is rate
+limited; state-changing requests must come from the site's own origin. Pages are `noindex` and `no-store`.
+
 ## Going live checklist
 
 - [ ] Env vars set in Vercel
+- [ ] Resend domain verified; `EMAIL_FROM` and `ORDER_ALERT_EMAILS` set
+- [ ] `ADMIN_PASSWORD` and `ADMIN_SESSION_SECRET` set (strong, unique)
+- [ ] MongoDB user limited to the `breathen99` database only (do not reuse a shared-cluster admin login)
 - [ ] Razorpay webhook -> `https://<domain>/api/webhooks/razorpay` (`payment.captured`, `order.paid`, `payment.failed`)
 - [ ] Coupons created
 - [ ] One test-mode payment on a preview deploy
