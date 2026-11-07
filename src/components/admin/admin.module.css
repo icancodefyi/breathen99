@@ -1,0 +1,259 @@
+.shell {
+  min-height: 100vh;
+  background: #f4f4f4;
+  color: var(--black);
+  font-family: var(--font-body);
+}
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: #fff;
+  border-bottom: 1px solid var(--border);
+  padding: 12px 24px;
+}
+.brand {
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--black);
+  text-decoration: none;
+}
+.brand span {
+  color: var(--red);
+}
+.main {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 28px 20px 64px;
+}
+.h1 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 14px;
+  margin-bottom: 24px;
+}
+.tile {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 16px;
+}
+.tileLabel {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-dim);
+}
+.tileValue {
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-top: 4px;
+}
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: end;
+  margin-bottom: 16px;
+}
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.75rem;
+  color: var(--text-dim);
+}
+.input,
+.select,
+.textarea {
+  border: 1px solid #d6d6d6;
+  border-radius: 4px;
+  padding: 9px 12px;
+  font: inherit;
+  font-size: 0.9rem;
+  background: #fff;
+  color: var(--black);
+}
+.textarea {
+  min-height: 80px;
+  resize: vertical;
+  width: 100%;
+}
+.btn {
+  background: var(--black);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 16px;
+  font: inherit;
+  font-size: 0.85rem;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+}
+.btn:hover {
+  background: #333;
+}
+.btnRed {
+  background: var(--red);
+}
+.btnRed:hover {
+  background: var(--red-dark);
+}
+.btnGhost {
+  background: #fff;
+  color: var(--black);
+  border: 1px solid #d6d6d6;
+}
+.btnGhost:hover {
+  background: #f4f4f4;
+}
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.tableWrap {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow-x: auto;
+}
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+.table th {
+  text-align: left;
+  font-weight: 500;
+  color: var(--text-dim);
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+.table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid #f0f0f0;
+  vertical-align: top;
+}
+.table tr:last-child td {
+  border-bottom: none;
+}
+.table a {
+  color: var(--red);
+  text-decoration: none;
+  font-weight: 500;
+}
+.muted {
+  color: var(--text-dim);
+  font-size: 0.8rem;
+}
+.badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 99px;
+  font-size: 0.72rem;
+  font-weight: 500;
+  background: #eee;
+  color: #444;
+}
+.paid {
+  background: #e3f6e8;
+  color: #15703a;
+}
+.created {
+  background: #fff4d6;
+  color: #8a6200;
+}
+.failed {
+  background: #fde3e0;
+  color: #b81d07;
+}
+.shipped {
+  background: #e0ecff;
+  color: #1a4fb0;
+}
+.delivered {
+  background: #e3f6e8;
+  color: #15703a;
+}
+.cancelled {
+  background: #eee;
+  color: #666;
+}
+.pager {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 16px;
+  font-size: 0.85rem;
+}
+.empty {
+  padding: 40px;
+  text-align: center;
+  color: var(--text-dim);
+}
+.card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 20px;
+  margin-bottom: 16px;
+}
+.cardTitle {
+  font-size: 1rem;
+  margin-bottom: 12px;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 16px;
+}
+.dl {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 8px 12px;
+  font-size: 0.88rem;
+}
+.dl dt {
+  color: var(--text-dim);
+}
+.dl dd {
+  margin: 0;
+  word-break: break-word;
+}
+.loginWrap {
+  max-width: 380px;
+  margin: 12vh auto;
+  padding: 0 20px;
+}
+.error {
+  color: var(--red);
+  font-size: 0.85rem;
+  margin-top: 8px;
+}
+.ok {
+  color: #15703a;
+  font-size: 0.85rem;
+  margin-top: 8px;
+}
+.back {
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  text-decoration: none;
+  display: inline-block;
+  margin-bottom: 12px;
+}
+.shell a:focus-visible,
+.shell button:focus-visible,
+.shell input:focus-visible,
+.shell select:focus-visible,
+.shell textarea:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 2px;
+}

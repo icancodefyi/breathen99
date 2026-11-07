@@ -42,7 +42,9 @@ export default function Nav() {
     mobileNav.querySelectorAll('a').forEach((a) => a.addEventListener('click', closeNav));
 
     // close on Escape
-    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') closeNav(); };
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') closeNav();
+    };
     document.addEventListener('keydown', onKey);
 
     return () => {
@@ -66,19 +68,35 @@ export default function Nav() {
           aria-expanded="false"
           aria-controls="mobile-nav-overlay"
         >
-          <span /><span /><span />
+          <span />
+          <span />
+          <span />
         </button>
       </div>
 
       {/* Desktop nav */}
       <nav ref={navRef}>
         <ul className="nav-links desktop-only">
-          <li><a href="#about">About</a></li>
-          <li><a href="#why">Who It Helps</a></li>
-          <li><a href="#product">Product</a></li>
-          <li><a href="#testimonials">Reviews</a></li>
-          <li><a href="#faq">FAQ</a></li>
-          <li><Link href="/checkout" className="nav-cta">Buy Now</Link></li>
+          <li>
+            <a href="#about">About</a>
+          </li>
+          <li>
+            <a href="#why">Who It Helps</a>
+          </li>
+          <li>
+            <a href="#product">Product</a>
+          </li>
+          <li>
+            <a href="#testimonials">Reviews</a>
+          </li>
+          <li>
+            <a href="#faq">FAQ</a>
+          </li>
+          <li>
+            <Link href="/checkout" className="nav-cta">
+              Buy Now
+            </Link>
+          </li>
         </ul>
       </nav>
 
@@ -95,12 +113,36 @@ export default function Nav() {
         aria-label="Navigation menu"
       >
         <ul className="mnav-links">
-          <li><a href="#about" className="mnav-link">About</a></li>
-          <li><a href="#why" className="mnav-link">Who It Helps</a></li>
-          <li><a href="#product" className="mnav-link">Product</a></li>
-          <li><a href="#testimonials" className="mnav-link">Reviews</a></li>
-          <li><a href="#faq" className="mnav-link">FAQ</a></li>
-          <li><Link href="/checkout" className="mnav-link mnav-link--cta">Order Now →</Link></li>
+          <li>
+            <a href="#about" className="mnav-link">
+              About
+            </a>
+          </li>
+          <li>
+            <a href="#why" className="mnav-link">
+              Who It Helps
+            </a>
+          </li>
+          <li>
+            <a href="#product" className="mnav-link">
+              Product
+            </a>
+          </li>
+          <li>
+            <a href="#testimonials" className="mnav-link">
+              Reviews
+            </a>
+          </li>
+          <li>
+            <a href="#faq" className="mnav-link">
+              FAQ
+            </a>
+          </li>
+          <li>
+            <Link href="/checkout" className="mnav-link mnav-link--cta">
+              Order Now →
+            </Link>
+          </li>
         </ul>
       </div>
     </>

@@ -21,10 +21,10 @@
   --text-dim:  rgba(26,26,26,0.58);
   --text-body: rgba(26,26,26,0.80);
 
-  --font-display: 'Bebas Neue', sans-serif;
-  --font-heading: 'Playfair Display', serif;
-  --font-body:    'DM Sans', sans-serif;
-  --font-italic:  'Cormorant Garamond', serif;
+  --font-display: var(--nf-bebas), 'Bebas Neue', sans-serif;
+  --font-heading: var(--nf-playfair), 'Playfair Display', serif;
+  --font-body:    var(--nf-dm-sans), 'DM Sans', sans-serif;
+  --font-italic:  var(--nf-cormorant), 'Cormorant Garamond', serif;
 
   --logo-bar-h: 64px;
   --nav-h:      0px;
