@@ -1,43 +1,55 @@
 import Image from 'next/image';
 import Button from '@/components/ui/Button';
 import Reveal from '@/components/ui/Reveal';
+import AboutStatement from './AboutStatement';
 import { brandTags } from '@/content/home';
 import styles from './About.module.css';
 
 export default function About() {
   return (
     <section id="about" className={styles.about} aria-labelledby="about-title">
-      <div className="ds-container">
-        <Reveal className={styles.head}>
-          <span className={styles.label}>About Us</span>
-          <h2 id="about-title" className={styles.title}>
-            We Built breath<span className={styles.en}>EN</span>
-            <br />
-            Because the Air
-            <br />
-            <span className={styles.fade}>Stopped Being Enough.</span>
-          </h2>
-        </Reveal>
+      <AboutStatement />
 
-        <Reveal className={styles.story}>
-          <p className={styles.lead}>
-            Polluted air. Relentless stress. Daily exertion. These quiet forces drain our energy, focus, and
-            productivity — and we barely realise it until our bodies begin to struggle.
-          </p>
-          <div className={styles.body}>
-            <p>
+      <div className="ds-container">
+        <div className={styles.beats}>
+          <Reveal className={styles.beatOne}>
+            <p className={styles.opening}>
+              <span className={styles.chant}>
+                <span>Polluted air.</span> <span>Relentless stress.</span> <span>Daily exertion.</span>
+              </span>{' '}
+              <span className={styles.aside}>
+                These quiet forces drain our energy, focus, and productivity — and we barely realise it until our bodies
+                begin to struggle.
+              </span>
+            </p>
+            <p className={styles.caption}>
               This is felt when we are in closed offices for a long time, travelling in packed air-conditioned cars,
               walking on polluted streets where breathing suffocates.
             </p>
-            <p>
-              So should we escape city life? Abandon our work, our ambitions, our responsibilities? <strong>No.</strong>
+          </Reveal>
+
+          <Reveal>
+            <p className={styles.question}>
+              So should we escape city life? Abandon our work, our ambitions, our responsibilities?{' '}
+              <strong className={styles.no}>No.</strong>
             </p>
-            <p>
+          </Reveal>
+
+          <Reveal className={styles.companionRow}>
+            <p className={styles.companion}>
               Because when breathing naturally becomes difficult, breathEN is here to help you. breathEN is not a
               replacement for nature — it is a companion, designed to assist the body with comfortable breaths.
             </p>
-            <p>The danger today is invisible — and invisible enemies are the hardest to beat.</p>
-          </div>
+          </Reveal>
+
+          <Reveal>
+            <p className={styles.danger}>
+              The danger today is invisible <span>— and invisible enemies are the hardest to beat.</span>
+            </p>
+          </Reveal>
+        </div>
+
+        <Reveal className={styles.quote}>
           <p className={styles.truth}>
             At breathEN, we believe in a simple truth:{' '}
             <strong>You don&apos;t need to be superhuman. You just want to feel well enough to show up.</strong>

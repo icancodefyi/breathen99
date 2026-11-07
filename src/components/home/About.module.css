@@ -1,78 +1,117 @@
 .about {
-  padding: var(--section-y) 0;
+  /* Overrides the legacy blanket `section { overflow: hidden }`, which breaks position: sticky. */
+  overflow: visible;
+  padding: 0 0 var(--section-y);
   background: var(--c-bg);
 }
 
-/* ---------- Headline ---------- */
-.head {
-  max-width: 1100px;
-  margin: 0 auto clamp(56px, 8vw, 112px);
-  text-align: center;
+/* ---------- The story, told in beats ---------- */
+.beats {
+  display: grid;
+  gap: clamp(72px, 10vw, 152px);
+  margin-top: clamp(72px, 10vw, 140px);
 }
 
-.label {
-  display: block;
-  margin-bottom: 22px;
-  font-size: 0.8rem;
-  font-weight: 500;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--c-ink-3);
-}
-
-.title {
-  margin: 0;
-  font-size: clamp(2.7rem, 7.2vw, 6.6rem);
-  font-weight: 500;
-  line-height: 0.96;
-  letter-spacing: -0.05em;
-  text-wrap: balance;
-  color: var(--c-ink);
-}
-.en {
-  color: var(--c-red);
-}
-.fade {
-  color: var(--c-ink-3);
-}
-
-/* ---------- Story ---------- */
-.story {
+/* Beat 1: three short phrases like a chant, the rest of the sentence beside them */
+.beatOne {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   column-gap: clamp(20px, 3vw, 40px);
   row-gap: 28px;
+  align-items: end;
 }
-
-.lead {
-  grid-column: 1 / span 5;
-  margin: 0;
-  font-size: clamp(1.4rem, 2.2vw, 2rem);
-  font-weight: 450;
-  line-height: 1.25;
-  letter-spacing: -0.025em;
+.opening {
+  display: contents;
+}
+.chant {
+  grid-column: 1 / span 7;
+  display: flex;
+  flex-direction: column;
+  font-size: clamp(2.6rem, 5.6vw, 5.4rem);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.045em;
   color: var(--c-ink);
 }
-
-.body {
-  grid-column: 7 / span 6;
-  display: grid;
-  gap: 18px;
-}
-.body p {
-  margin: 0;
-  font-size: 1.1rem;
-  line-height: 1.65;
+.chant span:nth-child(2) {
   color: var(--c-ink-2);
 }
-.body strong {
-  font-weight: 600;
+.chant span:nth-child(3) {
+  color: var(--c-ink-3);
+}
+.aside {
+  grid-column: 8 / span 5;
+  font-size: clamp(1.1rem, 1.4vw, 1.3rem);
+  line-height: 1.5;
+  letter-spacing: -0.012em;
   color: var(--c-ink);
+}
+.caption {
+  grid-column: 8 / span 5;
+  margin: 0;
+  padding-top: 20px;
+  border-top: 1px solid var(--c-line);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--c-ink-3);
+}
+
+/* Beat 2: the question, answered by one enormous word */
+.question {
+  max-width: 22em;
+  margin: 0;
+  font-size: clamp(1.5rem, 2.6vw, 2.4rem);
+  font-weight: 450;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+  color: var(--c-ink-3);
+}
+.no {
+  display: block;
+  margin-top: 0.12em;
+  font-size: clamp(6rem, 17vw, 15rem);
+  font-weight: 500;
+  line-height: 0.85;
+  letter-spacing: -0.07em;
+  color: var(--c-ink);
+}
+
+/* Beat 3: the answer, at a calm reading size, offset to the right */
+.companionRow {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: clamp(20px, 3vw, 40px);
+}
+.companion {
+  grid-column: 6 / span 7;
+  margin: 0;
+  font-size: clamp(1.25rem, 1.9vw, 1.7rem);
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  color: var(--c-ink);
+}
+
+/* Beat 4: two-tone statement leading into the truth quote */
+.danger {
+  max-width: 20em;
+  margin: 0;
+  font-size: clamp(1.7rem, 3.2vw, 2.9rem);
+  font-weight: 500;
+  line-height: 1.12;
+  letter-spacing: -0.035em;
+  color: var(--c-ink);
+}
+.danger span {
+  color: var(--c-ink-3);
+}
+
+/* ---------- The truth quote ---------- */
+.quote {
+  margin-top: clamp(56px, 8vw, 112px);
 }
 
 .truth {
-  grid-column: 1 / -1;
-  margin: clamp(20px, 4vw, 56px) 0 0;
+  margin: 0;
   padding-top: clamp(24px, 3vw, 40px);
   border-top: 1px solid var(--c-line);
   font-size: 0.95rem;
@@ -90,8 +129,7 @@
 }
 
 .tagline {
-  grid-column: 1 / -1;
-  margin: 0;
+  margin: clamp(20px, 2.4vw, 32px) 0 0;
   font-size: 1rem;
   color: var(--c-ink-3);
 }
@@ -260,8 +298,10 @@
 
 /* ---------- Responsive ---------- */
 @media (max-width: 900px) {
-  .lead,
-  .body {
+  .chant,
+  .aside,
+  .caption,
+  .companion {
     grid-column: 1 / -1;
   }
   .cards {

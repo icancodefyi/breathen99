@@ -1,0 +1,127 @@
+/* Tall scroll track; the panel inside stays pinned while the words light up. */
+.track {
+  position: relative;
+  height: 230svh;
+}
+
+.sticky {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  padding: calc(var(--nav-h) + 8px) var(--gutter) var(--gutter);
+}
+
+.panel {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  max-width: 1400px;
+  margin-inline: auto;
+  padding: clamp(28px, 5.5vw, 96px);
+  border-radius: clamp(24px, 3vw, 40px);
+  color: #fff;
+  background:
+    radial-gradient(70% 60% at 0% 110%, rgba(138, 20, 16, 0.55), transparent 65%),
+    radial-gradient(50% 50% at 100% 0%, rgba(58, 12, 10, 0.7), transparent 70%), #0b0b0c;
+}
+
+.label {
+  position: relative;
+  z-index: 2;
+  display: block;
+  margin-bottom: clamp(20px, 3vh, 36px);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.title {
+  position: relative;
+  z-index: 2;
+  max-width: 11.5em;
+  margin: 0;
+  font-size: clamp(2.6rem, min(6.4vw, 11svh), 6.6rem);
+  font-weight: 500;
+  line-height: 1.02;
+  letter-spacing: -0.045em;
+}
+
+/* Each word's opacity is driven by scroll progress (set inline by the component). */
+.word {
+  display: inline-block;
+  transition: opacity 0.25s linear;
+  will-change: opacity;
+}
+.en {
+  color: #ff3b2f;
+}
+
+/* The can label's five circles: bright red fading to near-black. */
+.circles {
+  position: absolute;
+  z-index: 1;
+  right: clamp(-40px, 2vw, 64px);
+  top: 50%;
+  display: flex;
+  flex-direction: column;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+.circle {
+  width: clamp(110px, 17svh, 190px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  margin-top: calc(clamp(110px, 17svh, 190px) * -0.42);
+  transition:
+    opacity 0.35s linear,
+    transform 0.6s var(--ease-out);
+  will-change: opacity, transform;
+}
+.circle:first-child {
+  margin-top: 0;
+}
+.circle:nth-child(1) {
+  background: var(--b-1);
+}
+.circle:nth-child(2) {
+  background: var(--b-2);
+}
+.circle:nth-child(3) {
+  background: var(--b-3);
+}
+.circle:nth-child(4) {
+  background: var(--b-4);
+}
+.circle:nth-child(5) {
+  background: var(--b-5);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+}
+
+@media (max-width: 900px) {
+  .track {
+    height: 200svh;
+  }
+  .panel {
+    justify-content: flex-start;
+    padding-top: clamp(40px, 10vw, 64px);
+  }
+  .title {
+    font-size: clamp(2.4rem, 11vw, 4rem);
+  }
+  .circles {
+    top: auto;
+    bottom: -6%;
+    right: -6%;
+    transform: none;
+  }
+  .circle {
+    width: 34vw;
+    margin-top: calc(34vw * -0.42);
+  }
+}

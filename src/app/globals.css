@@ -30,14 +30,14 @@
 
 /* ═══ RESET ═══ */
 *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: auto; overflow-x: hidden; }
+html { scroll-behavior: auto; overflow-x: clip; }
 body {
   background: var(--white);
   color: #1a1a1a;          /* explicit fallback — matches var(--black); ensures body text always renders */
   color: var(--black);
   font-family: var(--font-body);
   font-weight: 300;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 img { max-width: 100%; height: auto; display: block; }
 
