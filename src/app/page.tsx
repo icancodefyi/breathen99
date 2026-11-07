@@ -15,9 +15,9 @@ import Contact from '@/components/home/Contact';
 import SiteFooter from '@/components/home/SiteFooter';
 import StickyBuyBar from '@/components/home/StickyBuyBar';
 
-const LAYOUTS = ['overlap', 'between', 'stagger'] as const;
+const LAYOUTS = ['overlap', 'stagger'] as const;
 
-// TEMPORARY: ?hero= lets us compare hero layouts side by side. Remove once one is chosen.
+// ?hero=stagger switches the headline layout. Default is 'overlap'. Remove once one is chosen.
 export default async function Home({ searchParams }: { searchParams: Promise<{ hero?: string }> }) {
   const { hero } = await searchParams;
   const layout = LAYOUTS.find((l) => l === hero) ?? 'overlap';

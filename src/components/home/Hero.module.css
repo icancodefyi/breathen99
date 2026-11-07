@@ -281,10 +281,9 @@
   }
 }
 
-/* ---------- Desktop layout variants (temporary comparison) ---------- */
+/* ---------- Desktop headline layout: stagger (opt-in via ?hero=stagger) ---------- */
 @media (min-width: 901px) {
-  /* Shared: the headline is centred on the can instead of flowing under the eyebrow. */
-  .hero[data-layout='between'] .title,
+  /* The headline is centred on the can instead of flowing under the eyebrow. */
   .hero[data-layout='stagger'] .title {
     position: absolute;
     left: 50%;
@@ -297,22 +296,7 @@
     white-space: nowrap;
   }
 
-  /* B — one line, the can sits between the two words. Nothing is covered. */
-  .hero[data-layout='between'] .title {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: calc(var(--can-w) * 0.2);
-    font-size: clamp(2.6rem, min(7vw, 12.5svh), 9rem);
-  }
-  .hero[data-layout='between'] .gap {
-    display: block;
-  }
-  .hero[data-layout='between'] .word {
-    display: block;
-  }
-
-  /* C — staggered: first word top-left, second word bottom-right, the can in the middle. */
+  /* Staggered: first word top-left, second word bottom-right, the can in the middle. */
   .hero[data-layout='stagger'] .title {
     display: grid;
     grid-template-columns: 1fr calc(var(--can-w) * 0.54) 1fr;

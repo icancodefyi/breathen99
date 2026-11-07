@@ -6,7 +6,7 @@ import styles from './Hero.module.css';
 /** Stagger index for the entrance animation. */
 const step = (i: number) => ({ '--i': i }) as CSSProperties;
 
-export type HeroLayout = 'overlap' | 'between' | 'stagger';
+export type HeroLayout = 'overlap' | 'stagger';
 
 export default function Hero({ layout = 'overlap' }: { layout?: HeroLayout }) {
   return (
