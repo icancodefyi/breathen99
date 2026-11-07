@@ -1,8 +1,10 @@
+import { SITE_URL } from '@/lib/site-url';
+
 export const siteConfig = {
   name: 'breathEN',
   legalName: 'breathEN',
   tagline: 'Pure 99% Oxygen. Anytime. Anywhere.',
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000',
+  url: SITE_URL,
   logo: '/assets/logo-white.jpg',
   contact: {
     email: 'info@breathen99.com',

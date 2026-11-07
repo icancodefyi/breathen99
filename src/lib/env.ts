@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { SITE_URL } from './site-url';
 
 /** Optional string: an empty value (e.g. `FOO=` in .env) counts as unset. */
 const optional = (min = 0) => z.preprocess((v) => (v === '' ? undefined : v), z.string().min(min).optional());
@@ -25,7 +26,7 @@ const publicSchema = z.object({
 
 /** Public (browser-safe) env. Safe to import anywhere. */
 export const publicEnv = publicSchema.parse({
-  NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL || undefined,
+  NEXT_PUBLIC_SITE_URL: SITE_URL,
   NEXT_PUBLIC_RAZORPAY_KEY_ID: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || undefined,
 });
 

@@ -30,6 +30,14 @@ npm run dev             # http://localhost:3000
 
 Never commit real values. `.env.local` is gitignored; set production values in Vercel.
 
+**Blank values are safe.** Every secret is optional at build time and the app degrades gracefully:
+no Razorpay keys means checkout shows "payments temporarily unavailable"; no Gmail means order emails are skipped with a
+log warning; no admin password means `/admin` is disabled; no `NEXT_PUBLIC_SITE_URL` falls back to the Vercel URL. Once you
+sign in at `/admin`, a **Setup needed** panel lists whatever is still blank.
+
+> `NEXT_PUBLIC_*` values (the Razorpay key ID and site URL) are baked in at **build** time. If you add or change one in
+> Vercel, trigger a redeploy.
+
 ## Scripts
 
 | Command | What it does |
@@ -53,6 +61,7 @@ src/
   lib/            env, db/mongo, pricing, validation, http, signatures
   server/         models/ (collections) and services/ (orders, coupons, razorpay, rate-limit)
 scripts/          CLI helpers
+docs/seo/         SEO audit, proposal and keyword plan (for the later SEO phase)
 ```
 
 ## How payments work

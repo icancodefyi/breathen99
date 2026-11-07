@@ -3,6 +3,7 @@ import styles from '@/components/admin/admin.module.css';
 import { orderFiltersSchema } from '@/lib/validation/admin';
 import { requireAdminPage } from '@/server/services/admin-auth';
 import { listOrders, orderStats } from '@/server/services/admin-orders';
+import { getSetupStatus } from '@/server/services/setup-status';
 import { orderRef } from '@/server/emails/templates';
 
 type SearchParams = Promise<Record<string, string | string[] | undefined>>;
@@ -20,6 +21,7 @@ export default async function AdminOrdersPage({ searchParams }: { searchParams: 
   const filters = parsed.success ? parsed.data : orderFiltersSchema.parse({});
 
   const [{ orders, total, pages }, stats] = await Promise.all([listOrders(filters), orderStats()]);
+  const todo = getSetupStatus().filter((x) => !x.ok);
 
   const qs = (over: Record<string, string | number>) => {
     const p = new URLSearchParams();
@@ -35,6 +37,22 @@ export default async function AdminOrdersPage({ searchParams }: { searchParams: 
   return (
     <main className={styles.main}>
       <h1 className={styles.h1}>Orders</h1>
+
+      {todo.length > 0 && (
+        <section className={styles.setup} aria-label="Setup needed">
+          <h2 className={styles.cardTitle}>Setup needed</h2>
+          <ul>
+            {todo.map((t) => (
+              <li key={t.key}>
+                <strong>{t.label}</strong> <span className={`${styles.badge} ${styles[t.level]}`}>{t.level}</span>
+                <div className={styles.muted}>
+                  <code>{t.key}</code> — {t.hint}
+                </div>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
 
       <div className={styles.tiles}>
         <div className={styles.tile}>

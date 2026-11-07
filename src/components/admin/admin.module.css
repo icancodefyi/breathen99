@@ -257,3 +257,32 @@
   outline: 2px solid var(--red);
   outline-offset: 2px;
 }
+
+.setup {
+  background: #fffaf0;
+  border: 1px solid #f0d9a8;
+  border-radius: 6px;
+  padding: 16px 20px;
+  margin-bottom: 24px;
+}
+.setup ul {
+  list-style: none;
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+}
+.setup code {
+  font-size: 0.78rem;
+  background: #f4f4f4;
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+.required {
+  background: #fde3e0;
+  color: #b81d07;
+}
+.recommended {
+  background: #fff4d6;
+  color: #8a6200;
+}
