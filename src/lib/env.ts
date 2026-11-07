@@ -1,10 +1,20 @@
 import { z } from 'zod';
 
+/** Optional string: an empty value (e.g. `FOO=` in .env) counts as unset. */
+const optional = (min = 0) => z.preprocess((v) => (v === '' ? undefined : v), z.string().min(min).optional());
+
 const serverSchema = z.object({
   MONGODB_URI: z.string().min(1, 'MONGODB_URI is required'),
   MONGODB_DB: z.string().default('breathen99'),
   RAZORPAY_KEY_SECRET: z.string().optional(),
   RAZORPAY_WEBHOOK_SECRET: z.string().optional(),
+  // Email (Resend). If unset, emails are skipped with a warning.
+  RESEND_API_KEY: optional(),
+  EMAIL_FROM: optional(),
+  ORDER_ALERT_EMAILS: optional(),
+  // Admin orders page. If unset, the admin area is disabled (fails closed).
+  ADMIN_PASSWORD: optional(12),
+  ADMIN_SESSION_SECRET: optional(32),
 });
 
 const publicSchema = z.object({

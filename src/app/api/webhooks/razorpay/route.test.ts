@@ -5,8 +5,11 @@ const SECRET = 'whsec_test';
 const markOrderPaid = vi.fn();
 const markOrderFailed = vi.fn();
 const getOrderByRazorpayId = vi.fn();
+const sendOrderEmailsOnce = vi.fn();
 
 vi.mock('@/lib/env', () => ({ getServerEnv: () => ({ RAZORPAY_WEBHOOK_SECRET: SECRET }) }));
+vi.mock('@/lib/after', () => ({ runAfter: (fn: () => unknown) => void fn() }));
+vi.mock('@/server/services/notifications', () => ({ sendOrderEmailsOnce }));
 vi.mock('@/server/services/orders', () => ({ markOrderPaid, markOrderFailed, getOrderByRazorpayId }));
 
 const { POST } = await import('./route');
@@ -50,10 +53,17 @@ describe('POST /api/webhooks/razorpay', () => {
     expect(markOrderPaid).toHaveBeenCalledWith({ 'razorpay.orderId': 'order_1' }, 'pay_1');
   });
 
+  it('schedules order emails after confirming a paid order', async () => {
+    markOrderPaid.mockResolvedValue({ publicId: 'abc', status: 'paid' });
+    await call(captured(49500));
+    expect(sendOrderEmailsOnce).toHaveBeenCalledWith('abc');
+  });
+
   it('ignores a payment whose amount differs from the order total', async () => {
     const res = await call(captured(100));
     expect(res.status).toBe(200);
     expect(markOrderPaid).not.toHaveBeenCalled();
+    expect(sendOrderEmailsOnce).not.toHaveBeenCalled();
   });
 
   it('ignores a payment in the wrong currency', async () => {

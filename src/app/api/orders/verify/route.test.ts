@@ -4,7 +4,10 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 const KEY_SECRET = 'key_secret_test';
 const getOrderByPublicId = vi.fn();
 const markOrderPaid = vi.fn();
+const sendOrderEmailsOnce = vi.fn();
 
+vi.mock('@/lib/after', () => ({ runAfter: (fn: () => unknown) => void fn() }));
+vi.mock('@/server/services/notifications', () => ({ sendOrderEmailsOnce }));
 vi.mock('@/server/services/rate-limit', () => ({ enforceRateLimit: vi.fn().mockResolvedValue(undefined) }));
 vi.mock('@/server/services/razorpay', () => ({
   getRazorpayConfig: () => ({ keyId: 'rzp_test', keySecret: KEY_SECRET }),
@@ -39,6 +42,17 @@ describe('POST /api/orders/verify', () => {
     const res = await call(good);
     expect(res.status).toBe(200);
     expect(markOrderPaid).toHaveBeenCalledWith({ publicId: order.publicId }, 'pay_1');
+  });
+
+  it('schedules order emails once the order is paid', async () => {
+    markOrderPaid.mockResolvedValue({ ...order, status: 'paid' });
+    await call(good);
+    expect(sendOrderEmailsOnce).toHaveBeenCalledWith(order.publicId);
+  });
+
+  it('does not send emails for a forged signature', async () => {
+    await call({ ...good, razorpay_signature: 'f'.repeat(64) });
+    expect(sendOrderEmailsOnce).not.toHaveBeenCalled();
   });
 
   it('rejects a forged signature', async () => {

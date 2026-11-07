@@ -1,6 +1,8 @@
 import type { Customer } from '@/lib/validation/order';
 
 export type OrderStatus = 'created' | 'paid' | 'failed';
+export type FulfilmentStatus = 'new' | 'shipped' | 'delivered' | 'cancelled';
+export const FULFILMENT_STATUSES: readonly FulfilmentStatus[] = ['new', 'shipped', 'delivered', 'cancelled'];
 
 export interface OrderDoc {
   publicId: string;
@@ -20,6 +22,9 @@ export interface OrderDoc {
   createdAt: Date;
   updatedAt: Date;
   paidAt?: Date;
+  /** Set atomically when each email is claimed for sending, so it goes out exactly once. */
+  emails?: { confirmationAt?: Date; alertAt?: Date };
+  fulfilment?: { status: FulfilmentStatus; note?: string; updatedAt?: Date };
 }
 
 export interface CouponDoc {

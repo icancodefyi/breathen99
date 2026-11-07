@@ -2,6 +2,8 @@ import { handleError, HttpError, json } from '@/lib/http';
 import { verifyWebhookSignature } from '@/lib/razorpay-signature';
 import { getServerEnv } from '@/lib/env';
 import { getOrderByRazorpayId, markOrderFailed, markOrderPaid } from '@/server/services/orders';
+import { sendOrderEmailsOnce } from '@/server/services/notifications';
+import { runAfter } from '@/lib/after';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -46,7 +48,8 @@ export async function POST(req: Request) {
         console.error('[webhook] amount mismatch', { order: order.publicId, got: payment.amount });
         return json({ ok: true, ignored: true });
       }
-      await markOrderPaid({ 'razorpay.orderId': payment.order_id }, payment.id);
+      const paid = await markOrderPaid({ 'razorpay.orderId': payment.order_id }, payment.id);
+      if (paid?.status === 'paid') runAfter(() => sendOrderEmailsOnce(paid.publicId));
     } else if (event.event === 'payment.failed') {
       await markOrderFailed(payment.order_id);
     }

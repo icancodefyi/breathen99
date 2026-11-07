@@ -44,6 +44,7 @@ export async function createOrder(input: CreateOrderInput) {
       total: price.total,
     },
     razorpay: { orderId: rzpOrder.id },
+    fulfilment: { status: 'new' },
     createdAt: now,
     updatedAt: now,
   };

@@ -4,6 +4,8 @@ import { verifyPaymentSignature } from '@/lib/razorpay-signature';
 import { enforceRateLimit } from '@/server/services/rate-limit';
 import { getOrderByPublicId, markOrderPaid, toPublicOrder } from '@/server/services/orders';
 import { getRazorpayConfig } from '@/server/services/razorpay';
+import { sendOrderEmailsOnce } from '@/server/services/notifications';
+import { runAfter } from '@/lib/after';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -24,7 +26,9 @@ export async function POST(req: Request) {
     }
 
     const paid = await markOrderPaid({ publicId: order.publicId }, body.razorpay_payment_id);
-    return json({ order: toPublicOrder(paid ?? order) });
+    const final = paid ?? order;
+    if (final.status === 'paid') runAfter(() => sendOrderEmailsOnce(final.publicId));
+    return json({ order: toPublicOrder(final) });
   } catch (err) {
     return handleError(err);
   }
