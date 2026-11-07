@@ -69,7 +69,7 @@ describe('sendOrderEmailsOnce', () => {
   });
 
   it('releases the claim on failure so a later attempt can retry, and never throws', async () => {
-    sendEmail.mockRejectedValueOnce(new Error('resend down'));
+    sendEmail.mockRejectedValueOnce(new Error('smtp down'));
     await expect(sendOrderEmailsOnce('abc')).resolves.toBeUndefined();
     expect(doc.emails?.confirmationAt).toBeUndefined();
     await sendOrderEmailsOnce('abc');

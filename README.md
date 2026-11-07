@@ -21,8 +21,9 @@ npm run dev             # http://localhost:3000
 | `MONGODB_DB` | server only | Database name (default `breathen99`) |
 | `RAZORPAY_KEY_SECRET` | server only | Verifies payment signatures, creates orders |
 | `RAZORPAY_WEBHOOK_SECRET` | server only | Verifies Razorpay webhooks |
-| `RESEND_API_KEY` | server only | Sends order emails via Resend (optional; emails skipped if unset) |
-| `EMAIL_FROM` | server only | Sender, e.g. `breathEN <orders@breathen99.com>` (domain verified in Resend) |
+| `GMAIL_USER` | server only | Gmail / Google Workspace address that sends order emails (optional; emails skipped if unset) |
+| `GMAIL_APP_PASSWORD` | server only | Google app password for that account (needs 2-Step Verification on) |
+| `EMAIL_FROM` | server only | Optional sender, e.g. `breathEN <orders@breathen99.com>`; must be the Gmail address or a verified "Send mail as" alias |
 | `ORDER_ALERT_EMAILS` | server only | Comma-separated founder emails that get a new-order alert |
 | `ADMIN_PASSWORD` | server only | Admin login password, 12+ characters (admin disabled if unset) |
 | `ADMIN_SESSION_SECRET` | server only | Signs admin session cookies, 32+ characters (`openssl rand -base64 48`) |
@@ -77,7 +78,7 @@ limited; state-changing requests must come from the site's own origin. Pages are
 ## Going live checklist
 
 - [ ] Env vars set in Vercel
-- [ ] Resend domain verified; `EMAIL_FROM` and `ORDER_ALERT_EMAILS` set
+- [ ] Gmail app password created; `GMAIL_USER`, `GMAIL_APP_PASSWORD` and `ORDER_ALERT_EMAILS` set; one test order emailed
 - [ ] `ADMIN_PASSWORD` and `ADMIN_SESSION_SECRET` set (strong, unique)
 - [ ] MongoDB user limited to the `breathen99` database only (do not reuse a shared-cluster admin login)
 - [ ] Razorpay webhook -> `https://<domain>/api/webhooks/razorpay` (`payment.captured`, `order.paid`, `payment.failed`)

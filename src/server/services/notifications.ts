@@ -33,7 +33,7 @@ async function claimAndSend(publicId: string, key: EmailKey, build: (order: Orde
 export async function sendOrderEmailsOnce(publicId: string) {
   try {
     if (!isEmailConfigured()) {
-      console.warn('[email] RESEND_API_KEY / EMAIL_FROM not set; skipping order emails');
+      console.warn('[email] GMAIL_USER / GMAIL_APP_PASSWORD not set; skipping order emails');
       return;
     }
     await claimAndSend(publicId, 'confirmationAt', orderConfirmationEmail);

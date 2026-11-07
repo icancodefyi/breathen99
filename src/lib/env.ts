@@ -8,8 +8,9 @@ const serverSchema = z.object({
   MONGODB_DB: z.string().default('breathen99'),
   RAZORPAY_KEY_SECRET: z.string().optional(),
   RAZORPAY_WEBHOOK_SECRET: z.string().optional(),
-  // Email (Resend). If unset, emails are skipped with a warning.
-  RESEND_API_KEY: optional(),
+  // Email via Gmail SMTP (needs an app password). If unset, emails are skipped with a warning.
+  GMAIL_USER: optional(),
+  GMAIL_APP_PASSWORD: optional(),
   EMAIL_FROM: optional(),
   ORDER_ALERT_EMAILS: optional(),
   // Admin orders page. If unset, the admin area is disabled (fails closed).
