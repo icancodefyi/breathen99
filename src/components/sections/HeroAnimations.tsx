@@ -2,7 +2,8 @@
 import { useEffect } from 'react';
 
 /**
- * Landing-page intro, scroll reveals, counters, marquee pause and slideshow.
+ * Landing-page scroll reveals, counters, marquee pause and slideshow.
+ * (The hero and nav animate themselves with CSS; this file shrinks as sections are redesigned.)
  *
  * Everything started here is undone in the cleanup. React Strict Mode (dev) runs effects
  * twice; without cleanup the GSAP `from()` tweens were created twice and the second set
@@ -15,22 +16,6 @@ export default function HeroAnimations() {
     const timers: ReturnType<typeof setTimeout>[] = [];
     const cleanups: Array<() => void> = [];
 
-    // Curtain dismiss
-    const curtainEl = document.getElementById('curtain');
-    const dismissCurtain = () => {
-      if (!curtainEl) return;
-      curtainEl.classList.add('fade-out');
-      timers.push(setTimeout(() => curtainEl.remove(), 550));
-    };
-    if (document.readyState === 'complete') {
-      timers.push(setTimeout(dismissCurtain, 300));
-    } else {
-      const onLoad = () => timers.push(setTimeout(dismissCurtain, 300));
-      window.addEventListener('load', onLoad);
-      cleanups.push(() => window.removeEventListener('load', onLoad));
-      timers.push(setTimeout(dismissCurtain, 3000));
-    }
-
     const initGSAP = async () => {
       const { gsap } = await import('gsap');
       const { ScrollTrigger } = await import('gsap/ScrollTrigger');
@@ -40,17 +25,6 @@ export default function HeroAnimations() {
 
       // Everything inside the context is killed and reverted by ctx.revert().
       const ctx = gsap.context(() => {
-        const tl = gsap.timeline({ delay: 0.4 });
-        tl.from('.hero-eyebrow', { opacity: 0, y: 20, duration: 0.6, ease: 'power2.out' })
-          .from('.hero-h1', { opacity: 0, y: 40, duration: 0.8, ease: 'power3.out' }, '-=0.3')
-          .from('.hero-body', { opacity: 0, y: 20, duration: 0.6, ease: 'power2.out' }, '-=0.4')
-          .from('.hero-price', { opacity: 0, y: 20, duration: 0.5, ease: 'power2.out' }, '-=0.3')
-          .from('.hero-ctas', { opacity: 0, y: 20, duration: 0.5, ease: 'power2.out' }, '-=0.3')
-          .from('.hero-trust', { opacity: 0, y: 16, duration: 0.5, ease: 'power2.out' }, '-=0.2')
-          .from('.product-stage', { opacity: 0, scale: 0.92, duration: 0.9, ease: 'power3.out' }, 0.3);
-
-        gsap.to('#product-wrap', { y: -14, duration: 3.5, ease: 'sine.inOut', repeat: -1, yoyo: true });
-
         gsap.utils.toArray<HTMLElement>('.why-card, .callout-card, .testimonial-card, .faq-item').forEach((el) => {
           gsap.from(el, {
             scrollTrigger: { trigger: el, start: 'top 85%', once: true },
@@ -78,15 +52,6 @@ export default function HeroAnimations() {
               },
             },
           );
-        });
-
-        gsap.to('.orbit-ring', { rotation: 360, duration: 20, repeat: -1, ease: 'none', transformOrigin: '50% 50%' });
-        gsap.to('.orbit-ring-2', {
-          rotation: -360,
-          duration: 14,
-          repeat: -1,
-          ease: 'none',
-          transformOrigin: '50% 50%',
         });
 
         const stickyBar = document.querySelector('.sticky-buy-bar') as HTMLElement;

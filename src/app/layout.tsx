@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
-import { Bebas_Neue, Cormorant_Garamond, DM_Sans, Playfair_Display } from 'next/font/google';
+import { Bebas_Neue, Cormorant_Garamond, DM_Sans, Inter_Tight, Playfair_Display } from 'next/font/google';
 import './globals.css';
+import '../styles/design.css';
 import { siteConfig } from '@/config/site';
 
 // Self-hosted at build time: no request to Google from the visitor's browser.
@@ -26,7 +27,9 @@ const playfair = Playfair_Display({
   display: 'swap',
   variable: '--nf-playfair',
 });
-const fontVars = [bebas, cormorant, dmSans, playfair].map((f) => f.variable).join(' ');
+// New design system: one grotesque family, weights 400–600.
+const interTight = Inter_Tight({ subsets: ['latin'], display: 'swap', variable: '--nf-inter-tight' });
+const fontVars = [bebas, cormorant, dmSans, playfair, interTight].map((f) => f.variable).join(' ');
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),

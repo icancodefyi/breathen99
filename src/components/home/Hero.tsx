@@ -1,92 +1,82 @@
 import Image from 'next/image';
-import Link from 'next/link';
+import type { CSSProperties } from 'react';
+import Button from '@/components/ui/Button';
+import styles from './Hero.module.css';
+
+/** Stagger index for the entrance animation. */
+const step = (i: number) => ({ '--i': i }) as CSSProperties;
 
 export default function Hero() {
   return (
-    <section id="hero">
-      <div className="hero-left">
-        <div className="hero-eyebrow">
-          <span className="hero-eyebrow-dot" />
-          <span className="hero-eyebrow-text">World&apos;s First Nose Breathing Oxygen Canister</span>
-        </div>
-        <h1 className="hero-h1">
-          <em>
+    <>
+      <section id="hero" className={styles.hero} aria-labelledby="hero-title">
+        <div className={styles.sky} aria-hidden="true" />
+        <span className={`${styles.cloud} ${styles.cloud1}`} aria-hidden="true" />
+        <span className={`${styles.cloud} ${styles.cloud2}`} aria-hidden="true" />
+        <span className={`${styles.cloud} ${styles.cloud3}`} aria-hidden="true" />
+
+        <p className={`${styles.eyebrow} ${styles.rise}`} style={step(0)}>
+          World&apos;s First Nose Breathing Oxygen Canister
+        </p>
+
+        <h1 id="hero-title" className={styles.title}>
+          <span className={`${styles.titleBig} ${styles.rise}`} style={step(1)}>
             Comfortable
             <br />
             Breathing.
-          </em>
-          <br />
-          Anytime. Anywhere.
+          </span>{' '}
+          <span className={`${styles.tag} ${styles.rise}`} style={step(3)}>
+            Anytime. Anywhere.
+          </span>
         </h1>
-        <p className="hero-body">
-          Pollution. Fatigue. Altitude. Stress. Your body loses oxygen silently every day. breathEN delivers 99% pure
-          recreational oxygen — instantly, safely, anywhere.{' '}
-          <strong>No prescription. No side effects. Just breath.</strong>
-        </p>
-        <div className="hero-price">
-          <span className="hero-mrp">₹900</span>
-          <span className="hero-sale">₹495</span>
-          <span className="hero-save">45% OFF</span>
-        </div>
-        <div className="hero-ctas">
-          <Link href="/checkout" className="btn-primary">
-            Buy Now — ₹495
-          </Link>
-          <a
-            href="https://www.youtube.com/shorts/T9LWqEXDPhE"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-secondary"
-          >
-            Watch How It Works
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg>
-          </a>
-        </div>
-        <div className="hero-trust">
-          <div className="trust-item">
-            <span className="trust-text">99% Pure O₂</span>
-          </div>
-          <div className="trust-item">
-            <span className="trust-text">Zero Side Effects</span>
-          </div>
-          <div className="trust-item">
-            <span className="trust-text">Upto 200 Shots per Can</span>
-          </div>
-          <div className="trust-item">
-            <span className="trust-text">Trusted by Fire Officers</span>
-          </div>
-        </div>
-      </div>
 
-      <div className="hero-right">
-        <canvas id="ray-canvas" />
-        <canvas id="particle-canvas" />
-        <div className="hero-bg-text" aria-hidden="true">
-          O₂
+        <div className={styles.can}>
+          <Image
+            src="/assets/product.png"
+            alt="breathEN 99% pure oxygen canister"
+            width={1400}
+            height={1400}
+            priority
+            sizes="(max-width: 900px) 100vw, 78vh"
+          />
         </div>
-        <div className="product-stage">
-          <div className="glow-core" />
-          <div className="product-shadow" />
-          <div className="orbit-ring" />
-          <div className="orbit-ring-2" />
-          <canvas id="molecule-canvas" />
-          <div className="product-wrap" id="product-wrap">
-            <Image
-              src="/assets/product.png"
-              alt="breathEN 99% pure oxygen canister"
-              width={340}
-              height={480}
-              priority
-            />
+
+        <div className={`${styles.ctas} ${styles.rise}`} style={step(4)}>
+          <Button href="/checkout" variant="light">
+            Buy Now — ₹495
+          </Button>
+          <Button href="https://www.youtube.com/shorts/T9LWqEXDPhE" variant="link" external arrow>
+            Watch How It Works
+          </Button>
+        </div>
+      </section>
+
+      <div className={styles.intro}>
+        <div className="ds-container">
+          <div className={styles.introGrid}>
+            <p className={styles.lede}>
+              Pollution. Fatigue. Altitude. Stress. Your body loses oxygen silently every day. breathEN delivers 99%
+              pure recreational oxygen — instantly, safely, anywhere.{' '}
+              <strong>No prescription. No side effects. Just breath.</strong>
+            </p>
+
+            <div className={styles.facts}>
+              <div className={styles.price}>
+                <span className={styles.mrp}>₹900</span>
+                <span className={styles.sale}>₹495</span>
+                <span className={styles.save}>45% OFF</span>
+              </div>
+
+              <ul className={styles.trust}>
+                <li>99% Pure O₂</li>
+                <li>Zero Side Effects</li>
+                <li>Upto 200 Shots per Can</li>
+                <li>Trusted by Fire Officers</li>
+              </ul>
+            </div>
           </div>
         </div>
-        <div className="scroll-indicator">
-          <div className="scroll-line" />
-          <span className="scroll-text">Scroll</span>
-        </div>
       </div>
-    </section>
+    </>
   );
 }

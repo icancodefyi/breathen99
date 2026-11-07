@@ -1,150 +1,125 @@
 'use client';
-import { useEffect, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import Button from '@/components/ui/Button';
+import styles from './Nav.module.css';
+
+const LEFT = [
+  { id: 'about', label: 'About' },
+  { id: 'why', label: 'Who It Helps' },
+  { id: 'product', label: 'Product' },
+] as const;
+const RIGHT = [
+  { id: 'testimonials', label: 'Reviews' },
+  { id: 'faq', label: 'FAQ' },
+] as const;
+const ALL = [...LEFT, ...RIGHT];
 
 export default function Nav() {
-  const navRef = useRef<HTMLElement>(null);
-  const hamburgerRef = useRef<HTMLButtonElement>(null);
-  const mobileNavRef = useRef<HTMLDivElement>(null);
-  const backdropRef = useRef<HTMLDivElement>(null);
+  const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [active, setActive] = useState('');
 
   useEffect(() => {
-    const nav = navRef.current;
-    const hamburger = hamburgerRef.current;
-    const mobileNav = mobileNavRef.current;
-    const backdrop = backdropRef.current;
-    if (!nav || !hamburger || !mobileNav || !backdrop) return;
-
-    const onScroll = () => {
-      nav.classList.toggle('scrolled', window.scrollY > 60);
-    };
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
-
-    const openNav = () => {
-      mobileNav.classList.add('open');
-      backdrop.classList.add('open');
-      hamburger.classList.add('is-open');
-      hamburger.setAttribute('aria-expanded', 'true');
-    };
-    const closeNav = () => {
-      mobileNav.classList.remove('open');
-      backdrop.classList.remove('open');
-      hamburger.classList.remove('is-open');
-      hamburger.setAttribute('aria-expanded', 'false');
-    };
-    const toggleNav = () => (mobileNav.classList.contains('open') ? closeNav() : openNav());
-
-    hamburger.addEventListener('click', toggleNav);
-    backdrop.addEventListener('click', closeNav);
-
-    // close on anchor click
-    mobileNav.querySelectorAll('a').forEach((a) => a.addEventListener('click', closeNav));
-
-    // close on Escape
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') closeNav();
-    };
-    document.addEventListener('keydown', onKey);
-
-    return () => {
-      window.removeEventListener('scroll', onScroll);
-      hamburger.removeEventListener('click', toggleNav);
-      backdrop.removeEventListener('click', closeNav);
-      document.removeEventListener('keydown', onKey);
-    };
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
+  // Mark the link for the section currently in view.
+  useEffect(() => {
+    const sections = ALL.map((l) => document.getElementById(l.id)).filter((el): el is HTMLElement => Boolean(el));
+    if (sections.length === 0) return;
+    const observer = new IntersectionObserver(
+      (entries) => entries.forEach((e) => e.isIntersecting && setActive(e.target.id)),
+      { rootMargin: '-45% 0px -50% 0px' },
+    );
+    sections.forEach((s) => observer.observe(s));
+    return () => observer.disconnect();
+  }, []);
+
+  // Mobile menu: lock page scroll, close on Escape, close if the viewport grows to desktop.
+  useEffect(() => {
+    if (!open) return;
+    const prev = document.documentElement.style.overflow;
+    document.documentElement.style.overflow = 'hidden';
+    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && setOpen(false);
+    const mq = window.matchMedia('(min-width: 901px)');
+    const onChange = () => mq.matches && setOpen(false);
+    document.addEventListener('keydown', onKey);
+    mq.addEventListener('change', onChange);
+    return () => {
+      document.documentElement.style.overflow = prev;
+      document.removeEventListener('keydown', onKey);
+      mq.removeEventListener('change', onChange);
+    };
+  }, [open]);
+
+  const close = () => setOpen(false);
+  const item = (l: { id: string; label: string }) => (
+    <li key={l.id}>
+      <a href={`#${l.id}`} className={styles.link} aria-current={active === l.id ? 'true' : undefined}>
+        {l.label}
+      </a>
+    </li>
+  );
+
   return (
-    <>
-      {/* Fixed logo bar */}
-      <div className="logo-bar">
-        <Image src="/assets/logo-white.jpg" className="logo-bar-img" alt="breathEN" width={160} height={40} />
+    <header className={styles.header} data-solid={scrolled || open}>
+      <div className={styles.pill}>
+        <nav aria-label="Primary" style={{ display: 'contents' }}>
+          <ul className={styles.group}>{LEFT.map(item)}</ul>
+
+          <Link href="/" className={styles.logo} aria-label="breathEN — home" onClick={close}>
+            <Image src="/assets/brand/logo-mark.png" alt="breathEN" width={1331} height={265} priority />
+          </Link>
+
+          <ul className={`${styles.group} ${styles.groupEnd}`}>
+            {RIGHT.map(item)}
+            <li>
+              <Button href="/checkout" variant="dark" size="sm">
+                Buy Now
+              </Button>
+            </li>
+          </ul>
+        </nav>
+
         <button
-          className="nav-hamburger"
-          id="nav-hamburger"
-          ref={hamburgerRef}
-          aria-label="Open menu"
-          aria-expanded="false"
-          aria-controls="mobile-nav-overlay"
+          type="button"
+          className={styles.menuBtn}
+          aria-label={open ? 'Close menu' : 'Open menu'}
+          aria-expanded={open}
+          aria-controls="mobile-menu"
+          onClick={() => setOpen((v) => !v)}
         >
-          <span />
           <span />
           <span />
         </button>
       </div>
 
-      {/* Desktop nav */}
-      <nav ref={navRef}>
-        <ul className="nav-links desktop-only">
-          <li>
-            <a href="#about">About</a>
-          </li>
-          <li>
-            <a href="#why">Who It Helps</a>
-          </li>
-          <li>
-            <a href="#product">Product</a>
-          </li>
-          <li>
-            <a href="#testimonials">Reviews</a>
-          </li>
-          <li>
-            <a href="#faq">FAQ</a>
-          </li>
-          <li>
-            <Link href="/checkout" className="nav-cta">
-              Buy Now
-            </Link>
-          </li>
+      <div id="mobile-menu" className={styles.sheet} data-open={open} inert={!open}>
+        <ul className={styles.sheetLinks}>
+          {ALL.map((l) => (
+            <li key={l.id}>
+              <a
+                href={`#${l.id}`}
+                className={styles.sheetLink}
+                aria-current={active === l.id ? 'true' : undefined}
+                onClick={close}
+              >
+                {l.label}
+              </a>
+            </li>
+          ))}
         </ul>
-      </nav>
-
-      {/* Mobile nav backdrop */}
-      <div className="mnav-backdrop" id="mnav-backdrop" ref={backdropRef} />
-
-      {/* Mobile nav */}
-      <div
-        className="mobile-nav-overlay"
-        id="mobile-nav-overlay"
-        ref={mobileNavRef}
-        role="dialog"
-        aria-modal="true"
-        aria-label="Navigation menu"
-      >
-        <ul className="mnav-links">
-          <li>
-            <a href="#about" className="mnav-link">
-              About
-            </a>
-          </li>
-          <li>
-            <a href="#why" className="mnav-link">
-              Who It Helps
-            </a>
-          </li>
-          <li>
-            <a href="#product" className="mnav-link">
-              Product
-            </a>
-          </li>
-          <li>
-            <a href="#testimonials" className="mnav-link">
-              Reviews
-            </a>
-          </li>
-          <li>
-            <a href="#faq" className="mnav-link">
-              FAQ
-            </a>
-          </li>
-          <li>
-            <Link href="/checkout" className="mnav-link mnav-link--cta">
-              Order Now →
-            </Link>
-          </li>
-        </ul>
+        <div className={styles.sheetCta}>
+          <Button href="/checkout" variant="primary">
+            Order Now →
+          </Button>
+        </div>
       </div>
-    </>
+    </header>
   );
 }

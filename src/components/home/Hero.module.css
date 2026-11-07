@@ -1,0 +1,325 @@
+/* =========================================================
+   Hero — atmospheric sky, oversized headline, floating can
+   ========================================================= */
+.hero {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: max(100svh, 760px);
+  padding-top: calc(var(--nav-h) + clamp(16px, 5vh, 56px));
+  border-radius: 0 0 clamp(28px, 4vw, 56px) clamp(28px, 4vw, 56px);
+  text-align: center;
+  color: #fff;
+}
+
+/* Sky: deep at the top, softer toward the horizon, but never so pale that white type is lost. */
+.sky {
+  position: absolute;
+  inset: 0;
+  z-index: -3;
+  background:
+    radial-gradient(60% 40% at 16% 16%, rgba(255, 255, 255, 0.4), transparent 70%),
+    radial-gradient(50% 36% at 86% 30%, rgba(255, 255, 255, 0.3), transparent 70%),
+    linear-gradient(180deg, #3b72aa 0%, #5a8fc2 42%, #6f9fcb 78%, #7ba8d2 100%);
+}
+
+/* Soft light pooled behind the can so it separates from the sky. */
+.sky::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 54%;
+  width: min(86svh, 110vw);
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(255, 255, 255, 0.32), rgba(255, 255, 255, 0.1) 55%, transparent 100%);
+}
+
+.cloud {
+  position: absolute;
+  z-index: -2;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.42);
+  filter: blur(52px);
+  animation: drift 38s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+.cloud1 {
+  top: 26%;
+  left: -8%;
+  width: 46vw;
+  height: 13vw;
+}
+.cloud2 {
+  top: 50%;
+  right: -10%;
+  width: 52vw;
+  height: 15vw;
+  opacity: 0.8;
+  animation-duration: 46s;
+  animation-direction: alternate-reverse;
+}
+.cloud3 {
+  top: 10%;
+  left: 38%;
+  width: 30vw;
+  height: 9vw;
+  opacity: 0.5;
+  animation-duration: 54s;
+}
+
+/* ---------- Type ---------- */
+.eyebrow {
+  margin: 0 0 clamp(10px, 2vh, 22px);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.title {
+  margin: 0;
+  font-weight: 500;
+  font-size: clamp(3.4rem, min(11.8vw, 19vh), 12rem);
+  line-height: 0.88;
+  letter-spacing: -0.052em;
+  text-wrap: balance;
+  text-shadow: 0 2px 54px rgba(12, 40, 80, 0.3);
+}
+
+.titleBig {
+  position: relative;
+  z-index: 1; /* sits behind the can */
+  display: block;
+}
+
+.tag {
+  position: absolute;
+  inset: auto 0 clamp(100px, 14.5vh, 156px) 0;
+  z-index: 3;
+  font-size: clamp(1.2rem, 1.9vw, 1.6rem);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.014em;
+  color: #fff;
+  text-shadow: 0 1px 22px rgba(10, 38, 78, 0.55);
+}
+
+/* ---------- Product ---------- */
+.can {
+  position: absolute;
+  left: 50%;
+  top: 49%;
+  z-index: 2;
+  width: min(72svh, 96vw);
+  transform: translate(-50%, -44%) rotate(-5deg);
+  animation: canIn 1.3s var(--ease-out) 0.15s backwards;
+  filter: drop-shadow(0 46px 40px rgba(10, 36, 72, 0.4));
+  pointer-events: none;
+}
+.can img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* ---------- CTAs ---------- */
+.ctas {
+  position: absolute;
+  inset: auto 0 clamp(28px, 5vh, 56px) 0;
+  z-index: 3;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 16px clamp(20px, 2.6vw, 34px);
+  color: #fff;
+  text-shadow: 0 1px 18px rgba(10, 38, 78, 0.5);
+}
+.ctas a {
+  text-shadow: none;
+}
+.ctas a[class*='link'] {
+  text-shadow: 0 1px 18px rgba(10, 38, 78, 0.5);
+}
+
+/* =========================================================
+   Intro strip — the rest of the hero copy on white
+   ========================================================= */
+.intro {
+  position: relative;
+  padding: clamp(40px, 6vw, 96px) 0 clamp(72px, 9vw, 140px);
+}
+
+.introGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  gap: clamp(32px, 6vw, 112px);
+  align-items: start;
+}
+
+.lede {
+  margin: 0;
+  max-width: 24em;
+  font-size: clamp(1.55rem, 2.7vw, 2.55rem);
+  font-weight: 450;
+  line-height: 1.18;
+  letter-spacing: -0.03em;
+  color: var(--c-ink-3);
+}
+.lede strong {
+  font-weight: 500;
+  color: var(--c-ink);
+}
+
+.facts {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(24px, 3vw, 40px);
+}
+
+.price {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+}
+.mrp {
+  font-size: 1.15rem;
+  color: var(--c-ink-3);
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+}
+.sale {
+  font-size: clamp(3.4rem, 6vw, 5.6rem);
+  font-weight: 500;
+  line-height: 0.95;
+  letter-spacing: -0.05em;
+  color: var(--c-ink);
+}
+.save {
+  align-self: center;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: var(--c-surface);
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--c-red);
+}
+
+.trust {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--c-line);
+}
+.trust li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 12px 16px 0;
+  border-bottom: 1px solid var(--c-line);
+  font-size: 0.95rem;
+  font-weight: 450;
+  letter-spacing: -0.01em;
+  color: var(--c-ink);
+}
+.trust li::before {
+  content: '';
+  flex: none;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--c-red);
+}
+
+/* ---------- Motion ---------- */
+.rise {
+  animation: rise 1s var(--ease-out) backwards;
+  animation-delay: calc(var(--i, 0) * 90ms + 60ms);
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+}
+@keyframes canIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -40%) rotate(-5deg) scale(0.95);
+  }
+}
+@keyframes drift {
+  from {
+    transform: translateX(-3vw);
+  }
+  to {
+    transform: translateX(4vw);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rise,
+  .can,
+  .cloud {
+    animation: none;
+  }
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  .hero {
+    min-height: 0;
+    padding-bottom: clamp(36px, 8vw, 64px);
+  }
+  .title {
+    font-size: clamp(2.6rem, 14vw, 7rem);
+  }
+  .tag {
+    position: static;
+    margin-top: 18px;
+  }
+  .can {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: min(100%, 520px);
+    margin: -2vw auto -4vw;
+    transform: rotate(-5deg);
+    animation-name: canInMobile;
+  }
+  .sky::after {
+    top: 62%;
+  }
+  .ctas {
+    position: static;
+    margin-top: 14px;
+  }
+  .introGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@keyframes canInMobile {
+  from {
+    opacity: 0;
+    transform: translateY(24px) rotate(-5deg) scale(0.96);
+  }
+}
+
+@media (max-width: 480px) {
+  .ctas > a:first-child {
+    flex: 1 1 100%;
+  }
+}

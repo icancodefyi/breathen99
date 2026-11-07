@@ -1,7 +1,6 @@
 import Nav from '@/components/layout/Nav';
 import FAQ from '@/components/sections/FAQ';
 import HeroAnimations from '@/components/sections/HeroAnimations';
-import Curtain from '@/components/home/Curtain';
 import Hero from '@/components/home/Hero';
 import CroStripOne from '@/components/home/CroStripOne';
 import About from '@/components/home/About';
@@ -15,12 +14,10 @@ import FinalCta from '@/components/home/FinalCta';
 import Contact from '@/components/home/Contact';
 import SiteFooter from '@/components/home/SiteFooter';
 import StickyBuyBar from '@/components/home/StickyBuyBar';
-import FloatingCta from '@/components/home/FloatingCta';
 
 export default function Home() {
   return (
     <>
-      <Curtain />
       <Nav />
       <Hero />
       <CroStripOne />
@@ -36,7 +33,6 @@ export default function Home() {
       <Contact />
       <SiteFooter />
       <StickyBuyBar />
-      <FloatingCta />
       <HeroAnimations />
     </>
   );

@@ -1,0 +1,80 @@
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  font-family: var(--font-ui);
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.005em;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background-color 0.3s var(--ease-out),
+    color 0.3s var(--ease-out),
+    border-color 0.3s var(--ease-out),
+    transform 0.3s var(--ease-out);
+}
+
+/* Filled pills */
+.dark,
+.light,
+.primary {
+  padding: 1.05rem 1.9rem;
+  border-radius: 999px;
+}
+
+.dark {
+  background: var(--c-ink);
+  color: #fff;
+}
+.dark:hover {
+  background: #2a2a2e;
+  transform: translateY(-1px);
+}
+
+.light {
+  background: #fff;
+  color: var(--c-ink);
+}
+.light:hover {
+  background: var(--c-surface);
+  transform: translateY(-1px);
+}
+
+.primary {
+  background: var(--c-red);
+  color: #fff;
+}
+.primary:hover {
+  background: var(--c-red-deep);
+  transform: translateY(-1px);
+}
+
+.sm {
+  padding: 0.75rem 1.3rem;
+  font-size: 0.9rem;
+}
+
+/* Text link with an underline that follows the text colour */
+.link {
+  padding: 0.3rem 0;
+  color: inherit;
+  border-bottom: 1px solid currentColor;
+  opacity: 0.9;
+}
+.link:hover {
+  opacity: 1;
+}
+
+.arrow {
+  width: 1em;
+  height: 1em;
+  flex: none;
+  transition: transform 0.3s var(--ease-out);
+}
+.btn:hover .arrow {
+  transform: translateX(3px);
+}
