@@ -25,7 +25,7 @@ export default function HeroAnimations() {
 
       // Everything inside the context is killed and reverted by ctx.revert().
       const ctx = gsap.context(() => {
-        gsap.utils.toArray<HTMLElement>('.why-card, .callout-card, .testimonial-card, .faq-item').forEach((el) => {
+        gsap.utils.toArray<HTMLElement>('.callout-card, .testimonial-card, .faq-item').forEach((el) => {
           gsap.from(el, {
             scrollTrigger: { trigger: el, start: 'top 85%', once: true },
             opacity: 0,

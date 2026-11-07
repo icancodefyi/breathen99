@@ -7,7 +7,6 @@ export const whyCards = [
   {
     num: '01',
     img: 'lifestyle-trek.webp',
-    icon: '🏔️',
     title: 'High Altitude & Pilgrimage',
     desc: 'Every year thousands travel to Kedarnath, Badrinath, Ladakh, Sikkim. As altitude rises, oxygen drops. Breathlessness, fatigue, headache and dizziness follow.',
     list: ['Pilgrims fulfilling faith', 'Bikers conquering terrain', 'Travellers & photographers'],
@@ -15,7 +14,6 @@ export const whyCards = [
   {
     num: '02',
     img: 'lifestyle-yoga.webp',
-    icon: '👴',
     title: 'Elderly & Vulnerable',
     desc: 'With age, lung capacity to exchange oxygen in the blood decreases. Walking, climbing stairs, travelling — simple activities become exhausting... and suffocating. breathEN provides gentle, immediate comfort.',
     list: [
@@ -27,7 +25,6 @@ export const whyCards = [
   {
     num: '03',
     img: 'lifestyle-fire.webp',
-    icon: '🚒',
     title: 'First Aid & Emergency',
     desc: 'Emergencies give no warnings. Fire incidents, factory accidents, smoke, chemical and gases exposure, sudden breathlessness — breathEN acts as immediate temporary oxygen boost before help arrives.',
     list: ['Police & fire rescue teams', 'Factory and industrial staff and personnel', 'Residential building dwellers'],
@@ -35,7 +32,6 @@ export const whyCards = [
   {
     num: '04',
     img: 'lifestyle-office.webp',
-    icon: '💼',
     title: 'Indoor Professionals',
     desc: 'Millions spend 8–12 hours indoors daily. AC environments have lower oxygen, higher CO₂ — causing mental fatigue, low productivity, sleepiness and headaches.',
     list: ['Office workers & IT professionals', 'Designers & students', 'Anyone working indoors'],
@@ -43,7 +39,6 @@ export const whyCards = [
   {
     num: '05',
     img: 'lifestyle-gym.webp',
-    icon: '⚡',
     title: 'Fitness & Athletes',
     desc: 'Physical exertion increases oxygen demand. breathEN supports muscle recovery, reduces fatigue, improves alertness and restores energy faster after intense sessions.',
     list: ['Athletes & gym users', 'Cyclists & runners', 'Sports professionals'],

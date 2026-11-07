@@ -1,85 +1,71 @@
 import Image from 'next/image';
-import { whyCards, whyBenefits } from '@/content/home';
+import Reveal from '@/components/ui/Reveal';
+import { whyBenefits, whyCards } from '@/content/home';
+import UseCases from './UseCases';
+import styles from './WhoItHelps.module.css';
+
+function Check() {
+  return (
+    <span className={styles.check} aria-hidden="true">
+      <svg viewBox="0 0 16 16" fill="none">
+        <path d="M3.5 8.5l3 3 6-7" stroke="#fff" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    </span>
+  );
+}
 
 export default function WhoItHelps() {
   return (
-    <section id="why" aria-label="Who breathEN helps">
-      <div className="why-header">
-        <span className="section-label" style={{ opacity: 1, textAlign: 'center', display: 'block' }}>
-          Who breathEN Helps
-        </span>
-        <h2 className="why-title">
-          One Product.
-          <br />
-          <em>Five Real Needs.</em>
-        </h2>
-        <p className="why-sub">
-          Whether you&apos;re ascending a mountain, managing a deadline, or supporting an elderly parent — breathEN
-          delivers 99% pure oxygen when your body needs it most.
-        </p>
-      </div>
-      <div className="why-grid">
-        {whyCards.map((c) => (
-          <div key={c.num} className="why-card">
-            <span className="why-card-num">{c.num}</span>
-            <Image
-              src={`/assets/${c.img}`}
-              className="why-card-img"
-              alt={c.title}
-              width={400}
-              height={280}
-              loading="lazy"
-            />
-            <div className="why-card-body">
-              <span className="why-card-icon">{c.icon}</span>
-              <span className="why-card-title">{c.title}</span>
-              <p className="why-card-desc">{c.desc}</p>
-              <ul className="why-card-list">
-                {c.list.map((l, i) => (
-                  <li key={i}>{l}</li>
-                ))}
-              </ul>
-            </div>
-            <div className="why-card-line" />
-          </div>
-        ))}
+    <section id="why" className={styles.why} aria-labelledby="why-title">
+      <div className="ds-container">
+        <Reveal className={styles.head}>
+          <span className={styles.label}>Who breathEN Helps</span>
+          <h2 id="why-title" className={styles.title}>
+            One Product. <span>Five Real Needs.</span>
+          </h2>
+          <p className={styles.sub}>
+            Whether you&apos;re ascending a mountain, managing a deadline, or supporting an elderly parent — breathEN
+            delivers 99% pure oxygen when your body needs it most.
+          </p>
+        </Reveal>
       </div>
 
-      {/* Photo strip */}
-      <div className="who-helps-photo-strip">
-        <div className="who-photo-side">
-          <Image src="/assets/person-using.jpg" alt="Person using breathEN" width={480} height={600} loading="lazy" />
-          <div className="who-photo-caption">breathEN — 99% Pure Recreational Oxygen</div>
-        </div>
-        <div className="who-role-side">
-          <h3>
-            ONE CANISTER.
-            <br />
-            FIVE LIVES.
-          </h3>
-          <p className="who-role-tagline">
-            breathEN is not a medical device — it is a companion designed to give your body comfortable breaths when the
-            air around you simply isn&apos;t enough.
-          </p>
-          <div className="who-benefits-grid">
-            {whyBenefits.map((b) => (
-              <div key={b} className="who-benefit-item">
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="white"
-                  strokeWidth="2"
-                  opacity={0.7}
-                >
-                  <polyline points="20 6 9 17 4 12" />
-                </svg>
-                <span className="who-benefit-text">{b}</span>
-              </div>
-            ))}
+      <UseCases items={whyCards} />
+
+      <div className="ds-container">
+        <Reveal className={styles.band}>
+          <figure className={styles.photo}>
+            <div className={styles.photoFrame}>
+              <Image
+                src="/assets/person-using.jpg"
+                alt="Person using breathEN"
+                fill
+                sizes="(max-width: 900px) 100vw, 40vw"
+              />
+            </div>
+            <figcaption className={styles.caption}>breathEN — 99% Pure Recreational Oxygen</figcaption>
+          </figure>
+
+          <div className={styles.copy}>
+            <h3 className={styles.bandTitle}>
+              ONE CANISTER.
+              <br />
+              FIVE LIVES.
+            </h3>
+            <p className={styles.tagline}>
+              breathEN is not a medical device — it is a companion designed to give your body comfortable breaths when
+              the air around you simply isn&apos;t enough.
+            </p>
+            <ul className={styles.benefits}>
+              {whyBenefits.map((b) => (
+                <li key={b}>
+                  <Check />
+                  {b}
+                </li>
+              ))}
+            </ul>
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

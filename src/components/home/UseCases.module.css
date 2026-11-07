@@ -1,0 +1,213 @@
+/* Desktop: a tall track; the list + photo stay pinned while the active need advances. */
+.track {
+  position: relative;
+}
+
+.sticky {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  padding-top: calc(var(--nav-h) + 8px);
+}
+
+.inner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.list {
+  width: 48%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  border-top: 1px solid var(--c-line);
+}
+.item:last-child {
+  border-bottom: 1px solid var(--c-line);
+}
+
+.title {
+  margin: 0;
+}
+.title button {
+  display: flex;
+  align-items: baseline;
+  gap: 18px;
+  width: 100%;
+  padding: clamp(12px, 1.6svh, 18px) 0;
+  border: 0;
+  background: none;
+  text-align: left;
+  font: inherit;
+  font-size: clamp(1.5rem, min(2.6vw, 4.6svh), 2.6rem);
+  font-weight: 500;
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+  color: var(--c-ink-3);
+  cursor: pointer;
+  transition: color 0.35s var(--ease-out);
+}
+.title button:hover {
+  color: var(--c-ink-2);
+}
+.item[data-active='true'] .title button {
+  color: var(--c-ink);
+}
+
+.num {
+  flex: none;
+  min-width: 2.2em;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: var(--c-ink-3);
+}
+.item[data-active='true'] .num {
+  color: var(--c-red);
+}
+
+/* Details open for the active item only (0fr → 1fr row trick). */
+.detail {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.5s var(--ease-out);
+}
+.item[data-active='true'] .detail {
+  grid-template-rows: 1fr;
+}
+.detailInner {
+  overflow: hidden;
+  padding-left: calc(0.8rem * 2.2 + 18px);
+}
+.desc {
+  max-width: 34em;
+  margin: 0 0 14px;
+  font-size: 1.02rem;
+  line-height: 1.6;
+  color: var(--c-ink-2);
+}
+.points {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 clamp(16px, 2.4svh, 24px);
+  padding: 0;
+  list-style: none;
+}
+.points li {
+  padding: 7px 13px;
+  border-radius: 999px;
+  background: var(--c-surface);
+  font-size: 0.85rem;
+  color: var(--c-ink);
+}
+
+/* Photos: stacked on the right, the active one fades in. */
+.media {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  width: min(44%, 64svh);
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: var(--radius-card);
+  opacity: 0;
+  transform: translateY(-50%) scale(0.985);
+  transition:
+    opacity 0.6s var(--ease-out),
+    transform 0.8s var(--ease-out);
+}
+.item[data-active='true'] .media {
+  opacity: 1;
+  transform: translateY(-50%);
+}
+/* The stock photos carry a white wordmark strip along the bottom; scale from the top to crop it off. */
+.media img {
+  object-fit: cover;
+  object-position: 50% 0;
+  transform: scale(1.12);
+  transform-origin: 50% 0;
+}
+.mediaNum {
+  position: absolute;
+  z-index: 1;
+  left: 18px;
+  bottom: 16px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.86);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--c-ink);
+}
+
+/* ---------- Phones / tablets: a simple stack of cards ---------- */
+@media (max-width: 900px) {
+  .track {
+    height: auto !important;
+  }
+  .sticky {
+    position: static;
+    height: auto;
+    padding-top: 0;
+  }
+  .inner {
+    display: block;
+  }
+  .list {
+    width: 100%;
+    display: grid;
+    gap: 40px;
+  }
+  .item,
+  .item:last-child {
+    display: flex;
+    flex-direction: column;
+    border: 0;
+  }
+  .media {
+    position: relative;
+    order: -1;
+    top: auto;
+    right: auto;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    margin-bottom: 18px;
+    opacity: 1;
+    transform: none;
+  }
+  .item[data-active='true'] .media {
+    transform: none;
+  }
+  .title button,
+  .item .title button {
+    padding: 0 0 10px;
+    color: var(--c-ink);
+    font-size: clamp(1.6rem, 6.5vw, 2rem);
+    cursor: default;
+  }
+  .num {
+    color: var(--c-red);
+  }
+  .detail {
+    grid-template-rows: 1fr;
+  }
+  .detailInner {
+    padding-left: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .title button,
+  .detail,
+  .media {
+    transition: none;
+  }
+}
