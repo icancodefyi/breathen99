@@ -18,7 +18,7 @@ export default function FinalCta() {
             Get breathEN Now
           </Button>
           <div className={styles.can}>
-            <Image src="/assets/product.png" alt="" fill sizes="560px" />
+            <Image src="/assets/brand/shots/can-cta.png" alt="" fill sizes="560px" />
           </div>
         </Reveal>
       </div>

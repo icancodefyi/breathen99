@@ -435,7 +435,7 @@ export default function CheckoutClient() {
             <div className="card-title">Order Summary</div>
             <div className="summary-product">
               <Image
-                src="/assets/product.png"
+                src="/assets/brand/shots/can-hero.png"
                 alt="breathEN canister"
                 width={70}
                 height={90}

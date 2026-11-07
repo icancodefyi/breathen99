@@ -18,6 +18,9 @@ export default function Product() {
         {/* Product spotlight: the can with its two key features called out */}
         <Reveal className={styles.showcase}>
           <div className={`${styles.callout} ${styles.calloutA}`}>
+            <div className={styles.calloutMedia}>
+              <Image src="/assets/brand/shots/mouthpiece.png" alt="" fill sizes="(max-width: 900px) 90vw, 22vw" />
+            </div>
             <span className={styles.calloutLabel}>Unique Design</span>
             <h4 className={styles.calloutTitle}>
               Nose Breathing <span>Technology</span>
@@ -31,7 +34,7 @@ export default function Product() {
           <div className={styles.canWrap}>
             <div className={styles.canImg}>
               <Image
-                src="/assets/product.png"
+                src="/assets/brand/shots/can-back.png"
                 alt="breathEN nose breathing technology"
                 fill
                 sizes="(max-width: 900px) 90vw, 40vw"

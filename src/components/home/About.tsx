@@ -68,7 +68,7 @@ export default function About() {
               </div>
               <div className={`${styles.art} ${styles.canArt}`}>
                 <Image
-                  src="/assets/product.png"
+                  src="/assets/brand/shots/can-hero.png"
                   alt=""
                   fill
                   sizes="(max-width: 900px) 100vw, 34vw"
@@ -87,7 +87,7 @@ export default function About() {
               </div>
               <div className={`${styles.art} ${styles.canArtLying}`}>
                 <Image
-                  src="/assets/product.png"
+                  src="/assets/brand/shots/can-cta.png"
                   alt=""
                   fill
                   sizes="(max-width: 900px) 100vw, 40vw"

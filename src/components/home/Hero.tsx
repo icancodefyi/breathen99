@@ -33,7 +33,7 @@ export default function Hero({ layout = 'overlap' }: { layout?: HeroLayout }) {
 
         <div className={styles.can}>
           <Image
-            src="/assets/product.png"
+            src="/assets/brand/shots/can-hero.png"
             alt="breathEN 99% pure oxygen canister"
             width={1400}
             height={1400}

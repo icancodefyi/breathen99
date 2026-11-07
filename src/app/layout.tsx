@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     title: 'breathEN — Pure 99% Oxygen. Anytime. Anywhere.',
     description:
       "World's first nose breathing oxygen canister. Instant refresh for urban living, fitness, travel & stress. Zero side effects.",
-    images: ['/assets/product.png'],
+    images: ['/assets/brand/shots/can-hero.png'],
     type: 'website',
   },
 };
