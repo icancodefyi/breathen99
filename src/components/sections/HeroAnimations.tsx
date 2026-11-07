@@ -2,7 +2,7 @@
 import { useEffect } from 'react';
 
 /**
- * Landing-page scroll reveals, counters, marquee pause and slideshow.
+ * Landing-page scroll reveals, marquee pause and slideshow.
  * (The hero and nav animate themselves with CSS; this file shrinks as sections are redesigned.)
  *
  * Everything started here is undone in the cleanup. React Strict Mode (dev) runs effects
@@ -33,25 +33,6 @@ export default function HeroAnimations() {
             duration: 0.7,
             ease: 'power2.out',
           });
-        });
-
-        gsap.utils.toArray<HTMLElement>('[data-target]').forEach((el) => {
-          const target = parseInt(el.dataset.target || '0', 10);
-          const suffix = el.dataset.suffix || '';
-          gsap.fromTo(
-            el,
-            { innerText: 0 },
-            {
-              innerText: target,
-              duration: 2,
-              ease: 'power2.out',
-              snap: { innerText: 1 },
-              scrollTrigger: { trigger: el, start: 'top 80%', once: true },
-              onUpdate() {
-                el.innerText = Math.round(parseFloat(el.innerText)) + suffix;
-              },
-            },
-          );
         });
 
         const stickyBar = document.querySelector('.sticky-buy-bar') as HTMLElement;

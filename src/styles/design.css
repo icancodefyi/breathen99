@@ -97,3 +97,23 @@ body {
   outline: 2px solid var(--c-ink);
   outline-offset: 3px;
 }
+
+/* Scroll reveal (see components/ui/Reveal) */
+[data-reveal] {
+  transition:
+    opacity 0.9s var(--ease-out) var(--reveal-delay, 0ms),
+    transform 0.9s var(--ease-out) var(--reveal-delay, 0ms);
+}
+[data-reveal='hidden'] {
+  opacity: 0;
+  transform: translateY(26px);
+}
+[data-reveal='shown'] {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    transition: none;
+  }
+}

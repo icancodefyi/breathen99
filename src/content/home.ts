@@ -71,45 +71,18 @@ export const howToSteps = [
   },
 ];
 
-const brandMarqueeOnce = [
+/** The words from the old scrolling banner, in the same order. */
+export const brandTags = [
   'BREATHE BETTER',
-  '·',
   'LIVE STRONGER',
-  '·',
   'URBAN LIFESTYLE',
-  '·',
   'FITNESS READY',
-  '·',
   'TRAVEL READY',
-  '·',
   'ALTITUDE READY',
-  '·',
   'NOSE BREATHING',
-  '·',
   'LEAK PROOF',
-  '·',
   'RECYCLABLE',
-  '·',
-  'BREATHE BETTER',
-  '·',
-  'LIVE STRONGER',
-  '·',
-  'URBAN LIFESTYLE',
-  '·',
-  'FITNESS READY',
-  '·',
-  'TRAVEL READY',
-  '·',
-  'ALTITUDE READY',
-  '·',
-  'NOSE BREATHING',
-  '·',
-  'LEAK PROOF',
-  '·',
-  'RECYCLABLE',
-  '·',
 ];
-export const brandMarquee = brandMarqueeOnce;
 
 export const quoteMarquee = [
   'IMDAD FAKHI',

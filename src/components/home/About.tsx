@@ -1,21 +1,30 @@
+import Image from 'next/image';
+import Button from '@/components/ui/Button';
+import Reveal from '@/components/ui/Reveal';
+import { brandTags } from '@/content/home';
+import styles from './About.module.css';
+
 export default function About() {
   return (
-    <section id="about" aria-label="About breathEN">
-      <div className="about-inner">
-        <div className="about-left">
-          <span className="section-label">About Us</span>
-          <h2 className="about-headline">
-            We Built breath<span style={{ color: 'var(--red)' }}>EN</span>
+    <section id="about" className={styles.about} aria-labelledby="about-title">
+      <div className="ds-container">
+        <Reveal className={styles.head}>
+          <span className={styles.label}>About Us</span>
+          <h2 id="about-title" className={styles.title}>
+            We Built breath<span className={styles.en}>EN</span>
             <br />
             Because the Air
             <br />
-            <em>Stopped Being Enough.</em>
+            <span className={styles.fade}>Stopped Being Enough.</span>
           </h2>
-          <div className="about-body">
-            <p>
-              Polluted air. Relentless stress. Daily exertion. These quiet forces drain our energy, focus, and
-              productivity — and we barely realise it until our bodies begin to struggle.
-            </p>
+        </Reveal>
+
+        <Reveal className={styles.story}>
+          <p className={styles.lead}>
+            Polluted air. Relentless stress. Daily exertion. These quiet forces drain our energy, focus, and
+            productivity — and we barely realise it until our bodies begin to struggle.
+          </p>
+          <div className={styles.body}>
             <p>
               This is felt when we are in closed offices for a long time, travelling in packed air-conditioned cars,
               walking on polluted streets where breathing suffocates.
@@ -28,38 +37,88 @@ export default function About() {
               replacement for nature — it is a companion, designed to assist the body with comfortable breaths.
             </p>
             <p>The danger today is invisible — and invisible enemies are the hardest to beat.</p>
-            <p>
-              At breathEN, we believe in a simple truth:{' '}
-              <strong>You don&apos;t need to be superhuman. You just want to feel well enough to show up.</strong>
-            </p>
           </div>
-          <p className="about-tagline">&ldquo;Breathe better, live Smarter. #breathEN&rdquo;</p>
+          <p className={styles.truth}>
+            At breathEN, we believe in a simple truth:{' '}
+            <strong>You don&apos;t need to be superhuman. You just want to feel well enough to show up.</strong>
+          </p>
+          <p className={styles.tagline}>&ldquo;Breathe better, live Smarter. #breathEN&rdquo;</p>
+        </Reveal>
+
+        <div className={styles.cards}>
+          <Reveal>
+            <div className={`${styles.card} ${styles.sky}`}>
+              <div className={styles.skyGlow} aria-hidden="true" />
+              <div className={styles.stat}>
+                <span className={styles.pre} aria-hidden="true" />
+                <span className={styles.num}>99%</span>
+                <span className={styles.cap}>Pure Oxygen</span>
+              </div>
+              <div className={`${styles.art} ${styles.canArt}`}>
+                <Image
+                  src="/assets/product.png"
+                  alt=""
+                  fill
+                  sizes="(max-width: 900px) 100vw, 34vw"
+                  style={{ objectFit: 'contain' }}
+                />
+              </div>
+            </div>
+          </Reveal>
+
+          <Reveal delay={100}>
+            <div className={`${styles.card} ${styles.dark}`}>
+              <div className={styles.stat}>
+                <span className={styles.pre}>Upto</span>
+                <span className={styles.num}>200</span>
+                <span className={styles.cap}>Shots per Can</span>
+              </div>
+              <div className={`${styles.art} ${styles.canArtLying}`}>
+                <Image
+                  src="/assets/product.png"
+                  alt=""
+                  fill
+                  sizes="(max-width: 900px) 100vw, 40vw"
+                  style={{ objectFit: 'contain' }}
+                />
+              </div>
+            </div>
+          </Reveal>
+
+          <Reveal delay={200}>
+            <div className={`${styles.card} ${styles.photo}`}>
+              <div className={styles.stat}>
+                <span className={styles.pre} aria-hidden="true" />
+                <span className={styles.num}>0</span>
+                <span className={styles.cap}>Side Effects</span>
+              </div>
+              <div className={`${styles.art} ${styles.photoArt}`}>
+                <Image
+                  src="/assets/person-using.jpg"
+                  alt="Person using breathEN"
+                  fill
+                  sizes="(max-width: 900px) 100vw, 34vw"
+                  style={{ objectFit: 'cover' }}
+                />
+              </div>
+            </div>
+          </Reveal>
         </div>
-        <div className="about-right">
-          <div className="about-stats">
-            <div className="about-stat">
-              <span className="about-stat-upto">&nbsp;</span>
-              <span className="about-stat-val" data-target="99" data-suffix="%">
-                0%
-              </span>
-              <span className="about-stat-lbl">Pure Oxygen</span>
-            </div>
-            <div className="about-stat">
-              <span className="about-stat-upto">Upto</span>
-              <span className="about-stat-val" data-target="200" data-suffix="">
-                0
-              </span>
-              <span className="about-stat-lbl">Shots per Can</span>
-            </div>
-            <div className="about-stat">
-              <span className="about-stat-upto">&nbsp;</span>
-              <span className="about-stat-val" data-target="0" data-suffix="">
-                0
-              </span>
-              <span className="about-stat-lbl">Side Effects</span>
-            </div>
+
+        <Reveal>
+          <ul className={styles.tags}>
+            {brandTags.map((t) => (
+              <li key={t}>{t}</li>
+            ))}
+          </ul>
+
+          <div className={styles.cta}>
+            <p>Ready to Breathe Better? Order breathEN Today.</p>
+            <Button href="/checkout" variant="dark">
+              Get Your Can →
+            </Button>
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

@@ -68,13 +68,6 @@ img { max-width: 100%; height: auto; display: block; }
   padding: 0 36px; color: var(--white); opacity: .9;
 }
 @keyframes marqueeScroll { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
-.marquee-dark {
-  background: #f5f5f5;
-  border-top: 1px solid rgba(0,0,0,.07);
-  border-bottom: 1px solid rgba(0,0,0,.07);
-}
-.marquee-dark .marquee-track { animation-duration: 30s; animation-direction: reverse; }
-.marquee-dark .marquee-track span { color: rgba(26,26,26,.3); font-size: .8rem; }
 
 /* ═══ SECTION SHARED ═══ */
 section { position: relative; overflow: hidden; }
@@ -142,65 +135,8 @@ section { position: relative; overflow: hidden; }
 /* ═══════════════════════════════════════════════
    2. ABOUT
 ═══════════════════════════════════════════════ */
-#about { padding: 120px 56px; background: var(--off-white); }
-.about-inner {
-  max-width: 1200px; margin: 0 auto;
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 80px; align-items: start;
-}
-.about-headline {
-  font-family: var(--font-heading);
-  font-size: clamp(32px, 4vw, 60px);
-  font-weight: 800; line-height: 1.1;
-  margin-bottom: 32px; opacity: 0;
-  letter-spacing: -.01em;
-}
-.about-headline em { font-style: italic; color: var(--red); font-weight: 700; }
-.about-body {
-  font-size: clamp(14px, 1.2vw, 17px);
-  color: var(--text-body); line-height: 1.9; opacity: 0;
-}
-.about-body p { margin-bottom: 18px; }
-.about-body p:last-child { margin-bottom: 0; }
-.about-body strong { color: var(--black); font-weight: 600; }
-.about-tagline {
-  margin-top: 36px;
-  font-family: var(--font-italic); font-style: italic;
-  font-size: clamp(17px, 1.6vw, 22px);
-  color: var(--text-dim); letter-spacing: .06em; opacity: 0;
-  border-left: 3px solid var(--red); padding-left: 20px;
-}
-.about-right { opacity: 0; display: flex; flex-direction: column; justify-content: center; }
-.about-stats {
-  display: grid; grid-template-columns: repeat(3,1fr);
-  gap: 2px; background: rgba(0,0,0,.06); margin-top: 0;
-  border: 1px solid rgba(0,0,0,.06);
-}
-.about-stat {
-  background: #fff; padding: 36px 24px; text-align: center;
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-}
-.about-stat-upto {
-  font-family: var(--font-body);
-  font-size: .58rem; color: var(--text-muted);
-  letter-spacing: .2em; text-transform: uppercase;
-  display: block; height: 16px; line-height: 16px;
-  margin-bottom: 2px;
-}
 /* Spacer for stats without an "Upto" label — keeps numbers aligned */
-.about-stat-val {
-  font-family: var(--font-display);
-  font-size: clamp(28px, 3vw, 42px);
-  color: var(--red); display: block; letter-spacing: .05em;
-  line-height: 1;
-}
 /* For stats without upto label, spacer span handles alignment */
-.about-stat-lbl {
-  font-size: .62rem; color: var(--text-muted);
-  letter-spacing: .2em; text-transform: uppercase;
-  margin-top: 6px; display: block;
-}
 
 /* ═══════════════════════════════════════════════
    3. WHY breathEN — 5 KEY POINTS
@@ -668,10 +604,9 @@ footer {
   #smoke-canvas { width: 300px !important; }
 
   /* About */
-  #about, #product, #testimonials, #faq, #cta, #contact { padding: 72px 20px; }
+  #product, #testimonials, #faq, #cta, #contact { padding: 72px 20px; }
   #why { padding: 72px 0; }
   #why .why-header { padding: 0 20px 48px; }
-  .about-inner { grid-template-columns: 1fr; gap: 40px; }
 
   /* Why grid — single column on mobile, full-width images */
   .why-grid {
@@ -746,7 +681,6 @@ footer {
 @media (max-width: 540px) {
   .why-grid { grid-template-columns: 1fr !important; }
   .why-card-img { width: 100%; height: auto; object-fit: fill; margin-bottom: 16px; }
-  .about-stats { grid-template-columns: repeat(3, 1fr); }
 }
 
 /* ═══ MOBILE NAV OVERLAY ═══ */
@@ -1128,14 +1062,9 @@ a:focus-visible, button:focus-visible {
 .why-card-list li { font-size: .75rem; padding: 2px 0; }
 
 /* About stats — hover highlight */
-.about-stat {
-  transition: background .2s, transform .2s;
-  cursor: default;
-}
-.about-stat:hover { background: #fff8f7; transform: translateY(-2px); }
 
 /* Section labels — consistent red line accent */
-.why-header, .about-left, .testimonials-header, .faq-header {
+.why-header, .testimonials-header, .faq-header {
   border-left: none;
 }
 
@@ -1199,10 +1128,6 @@ a:focus-visible, button:focus-visible {
    on-scroll reveals are fully preserved.
 ═══════════════════════════════════════════════ */
 .section-label,
-.about-headline,
-.about-body,
-.about-tagline,
-.about-right,
 .why-title,
 .why-sub,
 .why-card,

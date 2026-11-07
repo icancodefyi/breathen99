@@ -2,9 +2,7 @@ import Nav from '@/components/layout/Nav';
 import FAQ from '@/components/sections/FAQ';
 import HeroAnimations from '@/components/sections/HeroAnimations';
 import Hero from '@/components/home/Hero';
-import CroStripOne from '@/components/home/CroStripOne';
 import About from '@/components/home/About';
-import BrandMarquee from '@/components/home/BrandMarquee';
 import WhoItHelps from '@/components/home/WhoItHelps';
 import Product from '@/components/home/Product';
 import CroStripTwo from '@/components/home/CroStripTwo';
@@ -25,9 +23,7 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ h
     <>
       <Nav />
       <Hero layout={layout} />
-      <CroStripOne />
       <About />
-      <BrandMarquee />
       <WhoItHelps />
       <Product />
       <CroStripTwo />

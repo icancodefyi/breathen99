@@ -1,0 +1,283 @@
+.about {
+  padding: var(--section-y) 0;
+  background: var(--c-bg);
+}
+
+/* ---------- Headline ---------- */
+.head {
+  max-width: 1100px;
+  margin: 0 auto clamp(56px, 8vw, 112px);
+  text-align: center;
+}
+
+.label {
+  display: block;
+  margin-bottom: 22px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--c-ink-3);
+}
+
+.title {
+  margin: 0;
+  font-size: clamp(2.7rem, 7.2vw, 6.6rem);
+  font-weight: 500;
+  line-height: 0.96;
+  letter-spacing: -0.05em;
+  text-wrap: balance;
+  color: var(--c-ink);
+}
+.en {
+  color: var(--c-red);
+}
+.fade {
+  color: var(--c-ink-3);
+}
+
+/* ---------- Story ---------- */
+.story {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: clamp(20px, 3vw, 40px);
+  row-gap: 28px;
+}
+
+.lead {
+  grid-column: 1 / span 5;
+  margin: 0;
+  font-size: clamp(1.4rem, 2.2vw, 2rem);
+  font-weight: 450;
+  line-height: 1.25;
+  letter-spacing: -0.025em;
+  color: var(--c-ink);
+}
+
+.body {
+  grid-column: 7 / span 6;
+  display: grid;
+  gap: 18px;
+}
+.body p {
+  margin: 0;
+  font-size: 1.1rem;
+  line-height: 1.65;
+  color: var(--c-ink-2);
+}
+.body strong {
+  font-weight: 600;
+  color: var(--c-ink);
+}
+
+.truth {
+  grid-column: 1 / -1;
+  margin: clamp(20px, 4vw, 56px) 0 0;
+  padding-top: clamp(24px, 3vw, 40px);
+  border-top: 1px solid var(--c-line);
+  font-size: 0.95rem;
+  color: var(--c-ink-3);
+}
+.truth strong {
+  display: block;
+  max-width: 18em;
+  margin-top: 14px;
+  font-size: clamp(1.9rem, 4.2vw, 3.7rem);
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  color: var(--c-ink);
+}
+
+.tagline {
+  grid-column: 1 / -1;
+  margin: 0;
+  font-size: 1rem;
+  color: var(--c-ink-3);
+}
+
+/* ---------- Stat cards ---------- */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(12px, 1.6vw, 20px);
+  margin-top: clamp(64px, 9vw, 128px);
+}
+
+.card {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: clamp(460px, 46vw, 660px);
+  padding: clamp(22px, 2.4vw, 34px);
+  border-radius: var(--radius-card);
+  color: #fff;
+}
+
+.stat {
+  position: relative;
+  z-index: 3;
+}
+.pre {
+  display: block;
+  min-height: 1.3em;
+  margin-bottom: 6px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.9;
+}
+.num {
+  display: block;
+  font-size: clamp(4.5rem, 9vw, 8.5rem);
+  font-weight: 500;
+  line-height: 0.9;
+  letter-spacing: -0.06em;
+}
+.cap {
+  display: block;
+  margin-top: 12px;
+  font-size: 1.1rem;
+  font-weight: 450;
+  letter-spacing: -0.01em;
+}
+
+/* Moving artwork inside a card */
+.art {
+  position: absolute;
+  z-index: 1;
+  transition: transform 0.9s var(--ease-out);
+}
+.card:hover .art {
+  transform: var(--art-hover, scale(1.04));
+}
+.art img {
+  object-fit: contain;
+  filter: drop-shadow(0 40px 36px rgba(8, 28, 60, 0.4));
+}
+
+/* Card 1 — the hero's sky */
+.sky {
+  background:
+    radial-gradient(70% 45% at 20% 12%, rgba(255, 255, 255, 0.36), transparent 70%),
+    linear-gradient(180deg, #3b72aa 0%, #5f93c4 55%, #7fabd3 100%);
+}
+.skyGlow {
+  position: absolute;
+  z-index: 0;
+  left: 50%;
+  bottom: -8%;
+  width: 120%;
+  aspect-ratio: 1;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(255, 255, 255, 0.3), transparent);
+}
+.canArt {
+  right: -10%;
+  bottom: -16%;
+  width: 104%;
+  aspect-ratio: 1;
+  transform: rotate(-9deg);
+  --art-hover: rotate(-9deg) scale(1.04);
+}
+
+/* Card 2 — dark, with the label's red glow */
+.dark {
+  background:
+    radial-gradient(90% 60% at 18% 112%, #8a1410 0%, rgba(138, 20, 16, 0) 62%),
+    radial-gradient(80% 60% at 100% 0%, #3a0c0a, transparent 70%), #0d0d0f;
+}
+.canArtLying {
+  right: -34%;
+  bottom: -2%;
+  width: 124%;
+  aspect-ratio: 1;
+  transform: rotate(-64deg);
+  --art-hover: rotate(-64deg) scale(1.04);
+}
+
+/* Card 3 — the real photo */
+.photo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(180deg, rgba(8, 10, 14, 0.62) 0%, rgba(8, 10, 14, 0) 46%);
+}
+.photoArt {
+  inset: 0;
+}
+.photoArt img {
+  object-fit: cover;
+  object-position: 50% 30%;
+  filter: none;
+}
+
+/* ---------- Pills + closing CTA ---------- */
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin: clamp(40px, 5vw, 72px) 0 0;
+  padding: 0;
+  list-style: none;
+}
+.tags li {
+  padding: 10px 18px;
+  border: 1px solid var(--c-line-strong);
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  color: var(--c-ink-2);
+}
+
+.cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px 48px;
+  margin-top: clamp(40px, 5vw, 72px);
+  padding: clamp(28px, 4vw, 56px);
+  border-radius: var(--radius-card);
+  background: var(--c-surface);
+}
+.cta p {
+  margin: 0;
+  max-width: 13em;
+  font-size: clamp(1.9rem, 4vw, 3.4rem);
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  color: var(--c-ink);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  .lead,
+  .body {
+    grid-column: 1 / -1;
+  }
+  .cards {
+    grid-template-columns: 1fr;
+  }
+  .card {
+    min-height: clamp(420px, 110vw, 560px);
+  }
+  .cta {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .art {
+    transition: none;
+  }
+}
