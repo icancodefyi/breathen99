@@ -2,7 +2,7 @@
 import { useEffect } from 'react';
 
 /**
- * Landing-page scroll reveals, marquee pause and slideshow.
+ * Landing-page scroll reveals, marquee pause and sticky buy bar.
  * (The hero and nav animate themselves with CSS; this file shrinks as sections are redesigned.)
  *
  * Everything started here is undone in the cleanup. React Strict Mode (dev) runs effects
@@ -25,7 +25,7 @@ export default function HeroAnimations() {
 
       // Everything inside the context is killed and reverted by ctx.revert().
       const ctx = gsap.context(() => {
-        gsap.utils.toArray<HTMLElement>('.callout-card, .testimonial-card, .faq-item').forEach((el) => {
+        gsap.utils.toArray<HTMLElement>('.testimonial-card, .faq-item').forEach((el) => {
           gsap.from(el, {
             scrollTrigger: { trigger: el, start: 'top 85%', once: true },
             opacity: 0,
@@ -61,41 +61,6 @@ export default function HeroAnimations() {
     };
 
     initGSAP();
-
-    // Slideshow
-    const track = document.getElementById('slideshow-track');
-    if (track) {
-      let current = 0;
-      const slides = Array.from(track.querySelectorAll<HTMLElement>('.slide'));
-      const dots = Array.from(document.querySelectorAll<HTMLButtonElement>('.slide-dot'));
-
-      const goTo = (idx: number) => {
-        slides[current].classList.remove('active');
-        dots[current]?.classList.remove('active');
-        current = (idx + slides.length) % slides.length;
-        slides[current].classList.add('active');
-        dots[current]?.classList.add('active');
-      };
-
-      const next = document.querySelector('.slide-next');
-      const prev = document.querySelector('.slide-prev');
-      const onNext = () => goTo(current + 1);
-      const onPrev = () => goTo(current - 1);
-      next?.addEventListener('click', onNext);
-      prev?.addEventListener('click', onPrev);
-      cleanups.push(() => {
-        next?.removeEventListener('click', onNext);
-        prev?.removeEventListener('click', onPrev);
-      });
-      dots.forEach((d) => {
-        const onDot = () => goTo(parseInt(d.dataset.index || '0'));
-        d.addEventListener('click', onDot);
-        cleanups.push(() => d.removeEventListener('click', onDot));
-      });
-
-      const autoTimer = setInterval(() => goTo(current + 1), 5000);
-      cleanups.push(() => clearInterval(autoTimer));
-    }
 
     return () => {
       cancelled = true;

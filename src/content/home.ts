@@ -101,3 +101,54 @@ export const quoteMarquee = [
   '"Get your breath back almost immediately"',
   '·',
 ];
+
+/**
+ * Product benefits. Transcribed word for word from the brand's two benefit
+ * infographics (benefits-1.jpg, benefits-2.jpg) so they render as real text.
+ */
+export const benefitGroups = [
+  {
+    id: 'lifestyle',
+    label: 'Lifestyle Benefits',
+    items: [
+      {
+        title: 'Travel Recovery / Jet Lag',
+        desc: 'Supports faster recovery from flights, road trips, altitude changes, and long journeys.',
+      },
+      {
+        title: 'Supports Urban Lifestyle',
+        desc: 'Helps counter the heavy-air feeling from offices, traffic, pollution, and closed spaces.',
+      },
+      {
+        title: 'Instant Refresh',
+        desc: 'Quick oxygen boost that helps you feel lighter, clearer, and energised within seconds.',
+      },
+      {
+        title: 'Clear Focus',
+        desc: 'Refreshing breaths help reduce foggy-head feeling after stress or fatigue.',
+      },
+    ],
+  },
+  {
+    id: 'performance',
+    label: 'Performance Benefits',
+    items: [
+      {
+        title: 'Enhance Endurance',
+        desc: 'Supports longer-lasting energy during workouts, travel, and active days.',
+      },
+      {
+        title: 'Breathe Better',
+        desc: 'Enjoy smoother, lighter breathing anytime your air feels heavy.',
+      },
+      {
+        title: 'Perform Stronger',
+        desc: 'Refreshes breathing between or after activity to support stamina and post-exercise comfort',
+      },
+      {
+        title: 'Recover Faster',
+        desc: 'Supports quicker breathing comfort after workouts, stress, and long days.',
+      },
+    ],
+  },
+];
