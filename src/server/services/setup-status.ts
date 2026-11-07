@@ -10,6 +10,7 @@ export interface SetupItem {
 }
 
 interface Input {
+  mongodbUri?: string;
   razorpayKeyId?: string;
   razorpayKeySecret?: string;
   razorpayWebhookSecret?: string;
@@ -22,6 +23,13 @@ interface Input {
 /** Which launch settings are still blank. Pure and secret-free: reports presence only, never values. */
 export function evaluateSetup(i: Input): SetupItem[] {
   return [
+    {
+      key: 'MONGODB_URI',
+      label: 'MongoDB connection',
+      hint: 'Orders, coupons and this dashboard need the database. Use a user limited to the breathen99 database.',
+      ok: Boolean(i.mongodbUri),
+      level: 'required',
+    },
     {
       key: 'NEXT_PUBLIC_RAZORPAY_KEY_ID',
       label: 'Razorpay key ID',
@@ -70,6 +78,7 @@ export function evaluateSetup(i: Input): SetupItem[] {
 export function getSetupStatus(): SetupItem[] {
   const env = getServerEnv();
   return evaluateSetup({
+    mongodbUri: env.MONGODB_URI,
     razorpayKeyId: publicEnv.NEXT_PUBLIC_RAZORPAY_KEY_ID,
     razorpayKeySecret: env.RAZORPAY_KEY_SECRET,
     razorpayWebhookSecret: env.RAZORPAY_WEBHOOK_SECRET,

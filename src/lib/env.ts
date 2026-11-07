@@ -5,7 +5,8 @@ import { SITE_URL } from './site-url';
 const optional = (min = 0) => z.preprocess((v) => (v === '' ? undefined : v), z.string().min(min).optional());
 
 const serverSchema = z.object({
-  MONGODB_URI: z.string().min(1, 'MONGODB_URI is required'),
+  // Optional here so a blank install still boots; getDb() answers 503 when it is missing.
+  MONGODB_URI: optional(),
   MONGODB_DB: z.string().default('breathen99'),
   RAZORPAY_KEY_SECRET: z.string().optional(),
   RAZORPAY_WEBHOOK_SECRET: z.string().optional(),

@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { evaluateSetup } from './setup-status';
 
 const full = {
+  mongodbUri: 'mongodb://x',
   razorpayKeyId: 'rzp_live_x',
   razorpayKeySecret: 's',
   razorpayWebhookSecret: 'w',
@@ -21,11 +22,12 @@ describe('evaluateSetup', () => {
   });
 
   it('flags every item on a blank install', () => {
-    expect(missing({})).toHaveLength(6);
+    expect(missing({})).toHaveLength(7);
   });
 
   it('marks payment settings as required and email/site URL as recommended', () => {
     const level = Object.fromEntries(evaluateSetup({}).map((x) => [x.key, x.level]));
+    expect(level.MONGODB_URI).toBe('required');
     expect(level.RAZORPAY_KEY_SECRET).toBe('required');
     expect(level.NEXT_PUBLIC_RAZORPAY_KEY_ID).toBe('required');
     expect(level.RAZORPAY_WEBHOOK_SECRET).toBe('required');
