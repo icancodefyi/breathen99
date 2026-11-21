@@ -1,6 +1,6 @@
 .faq {
   overflow: visible;
-  padding: var(--section-y) 0;
+  padding: calc(var(--section-y) * 0.5) 0 var(--section-y);
   background: var(--c-bg);
 }
 

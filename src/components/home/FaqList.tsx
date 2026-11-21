@@ -18,7 +18,7 @@ export default function FaqList({ top, rest }: { top: Item[]; rest: Item[] }) {
   const render = (f: Item) => (
     <details key={f.q} className={styles.item} name="faq">
       <summary>
-        {withTm(f.q)}
+        <span>{withTm(f.q)}</span>
         <span className={styles.icon} aria-hidden="true" />
       </summary>
       <p className={styles.answer}>{withTm(f.a)}</p>
