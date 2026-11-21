@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Button from '@/components/ui/Button';
 import Reveal from '@/components/ui/Reveal';
 import AboutStatement from './AboutStatement';
 import styles from './About.module.css';
@@ -9,43 +10,27 @@ export default function About() {
       <AboutStatement />
 
       <div className="ds-container">
-        <div className={styles.beats}>
-          <Reveal className={styles.beatOne}>
-            <p className={styles.opening}>
-              <span className={styles.chant}>
-                <span>Polluted air.</span> <span>Relentless stress.</span> <span>Daily exertion.</span>
-              </span>{' '}
-              <span className={styles.aside}>
-                These quiet forces drain our energy, focus, and productivity — and we barely realise it until our bodies
-                begin to struggle.
-              </span>
-            </p>
-            <p className={styles.caption}>
-              This is felt when we are in closed offices for a long time, travelling in packed air-conditioned cars,
-              walking on polluted streets where breathing suffocates.
-            </p>
-          </Reveal>
-
-          <Reveal>
-            <p className={styles.question}>
-              So should we escape city life? Abandon our work, our ambitions, our responsibilities?{' '}
-              <strong className={styles.no}>No.</strong>
-            </p>
-          </Reveal>
-
-          <Reveal className={styles.companionRow}>
-            <p className={styles.companion}>
-              Because when breathing naturally becomes difficult, breathEN is here to help you. breathEN is not a
-              replacement for nature — it is a companion, designed to assist the body with comfortable breaths.
-            </p>
-          </Reveal>
-
-          <Reveal>
-            <p className={styles.danger}>
-              The danger today is invisible <span>— and invisible enemies are the hardest to beat.</span>
-            </p>
-          </Reveal>
-        </div>
+        <Reveal className={styles.intro}>
+          <div className={styles.introMain}>
+            <span className={styles.scale} aria-hidden="true">
+              <span />
+              <span />
+              <span />
+              <span />
+              <span />
+            </span>
+            <h3 className={styles.introTitle}>breathEN is not a replacement for nature —</h3>
+          </div>
+          <div className={styles.introSide}>
+            <div className={styles.tile}>
+              <Image src="/assets/brand/shots/can-side.png" alt="" fill sizes="(max-width: 900px) 100vw, 33vw" />
+            </div>
+            <p className={styles.introText}>It is a companion, designed to assist the body with comfortable breaths.</p>
+            <Button href="/about" variant="link" arrow>
+              Read our story
+            </Button>
+          </div>
+        </Reveal>
 
         <Reveal className={styles.quote}>
           <p className={styles.truth}>

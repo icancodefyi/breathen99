@@ -60,8 +60,8 @@ export default function Hero({ layout = 'overlap' }: { layout?: HeroLayout }) {
         <div className="ds-container">
           <div className={styles.introGrid}>
             <p className={styles.lede}>
-              Pollution. Fatigue. Altitude. Stress. Your body loses oxygen silently every day. breathEN delivers 99%
-              pure recreational oxygen — instantly, safely, anywhere.{' '}
+              Pollution. Fatigue. Recovery. Altitude. Stress. Your body loses oxygen silently every day. breathEN
+              delivers 99% pure recreational oxygen — instantly, safely, anywhere.{' '}
               <strong>No prescription. No side effects. Just breath.</strong>
             </p>
 

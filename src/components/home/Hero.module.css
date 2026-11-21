@@ -122,7 +122,7 @@
   z-index: 2;
   width: var(--can-w);
   transform: translate(-50%, -44%) rotate(-5deg);
-  animation: canIn 1.3s var(--ease-out) 0.15s backwards;
+  animation: canIn 1.2s var(--ease-out) 1.2s backwards; /* after the text has been read */
   filter: drop-shadow(0 46px 40px rgba(10, 36, 72, 0.4));
   pointer-events: none;
 }
