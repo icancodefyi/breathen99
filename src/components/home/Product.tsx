@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Reveal from '@/components/ui/Reveal';
 import { benefitGroups, howToSteps } from '@/content/home';
 import BenefitTabs from './BenefitTabs';
+import HowToVideo from './HowToVideo';
 import styles from './Product.module.css';
 
 export default function Product() {
@@ -81,6 +82,9 @@ export default function Product() {
               </li>
             ))}
           </ol>
+          <div className={styles.video}>
+            <HowToVideo />
+          </div>
         </Reveal>
       </div>
     </section>

@@ -402,3 +402,8 @@
     transition: none;
   }
 }
+
+/* How-to video, full width under the steps */
+.video {
+  margin-top: clamp(40px, 5vw, 64px);
+}
