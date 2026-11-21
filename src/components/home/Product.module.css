@@ -169,29 +169,53 @@
   justify-content: space-between;
   gap: 20px 32px;
 }
-.tabs {
-  display: inline-flex;
+/* A physical-looking two-way switch: grooved track, raised sliding thumb. */
+.switch {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: min(100%, 440px);
   padding: 4px;
   border-radius: 999px;
-  background: var(--c-surface);
+  background: linear-gradient(180deg, #d9d9de 0%, #ececef 100%);
+  box-shadow:
+    inset 0 2px 5px rgba(11, 11, 12, 0.2),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.7),
+    0 1px 0 rgba(255, 255, 255, 0.9);
+}
+.thumb {
+  position: absolute;
+  z-index: 0;
+  top: 4px;
+  bottom: 4px;
+  left: 4px;
+  width: calc(50% - 4px);
+  border-radius: 999px;
+  background: linear-gradient(180deg, #ffffff 0%, #f1f1f4 100%);
+  box-shadow:
+    0 3px 8px rgba(11, 11, 12, 0.18),
+    0 1px 2px rgba(11, 11, 12, 0.14),
+    inset 0 -2px 0 rgba(11, 11, 12, 0.05);
+  transition: transform 0.5s var(--ease-out);
 }
 .tab {
-  padding: 11px 20px;
+  position: relative;
+  z-index: 1;
+  padding: 13px 16px;
   border: 0;
-  border-radius: 999px;
   background: transparent;
   font: inherit;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   font-weight: 500;
-  color: var(--c-ink-2);
+  color: var(--c-ink-3);
   cursor: pointer;
-  transition:
-    background-color 0.3s var(--ease-out),
-    color 0.3s var(--ease-out);
+  transition: color 0.35s var(--ease-out);
+}
+.tab:hover {
+  color: var(--c-ink-2);
 }
 .tab[aria-selected='true'] {
-  background: var(--c-ink);
-  color: #fff;
+  color: var(--c-ink);
 }
 
 .tiles {
@@ -374,7 +398,8 @@
 
 @media (prefers-reduced-motion: reduce) {
   .tile,
-  .tab {
+  .tab,
+  .thumb {
     animation: none;
     transition: none;
   }

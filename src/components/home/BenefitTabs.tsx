@@ -8,7 +8,7 @@ interface Group {
   items: { title: string; desc: string }[];
 }
 
-/** Accessible tabs: arrow keys move between tabs, only the active panel is shown. */
+/** A two-option switch: a grooved track, a raised thumb that slides under the active option. Keyboard: arrow keys. */
 export default function BenefitTabs({ groups }: { groups: Group[] }) {
   const [active, setActive] = useState(0);
   const base = useId();
@@ -23,7 +23,12 @@ export default function BenefitTabs({ groups }: { groups: Group[] }) {
 
   return (
     <>
-      <div className={styles.tabs} role="tablist" aria-label="Product benefits" onKeyDown={onKeyDown}>
+      <div className={styles.switch} role="tablist" aria-label="Product benefits" onKeyDown={onKeyDown}>
+        <span
+          className={styles.thumb}
+          aria-hidden="true"
+          style={{ transform: active === 0 ? 'translateX(0)' : 'translateX(calc(100% + 4px))' }}
+        />
         {groups.map((g, i) => (
           <button
             key={g.id}

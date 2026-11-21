@@ -97,28 +97,6 @@ export const testimonials = [
  */
 export const benefitGroups = [
   {
-    id: 'lifestyle',
-    label: 'Lifestyle Benefits',
-    items: [
-      {
-        title: 'Travel Recovery / Jet Lag',
-        desc: 'Supports faster recovery from flights, road trips, altitude changes, and long journeys.',
-      },
-      {
-        title: 'Supports Urban Lifestyle',
-        desc: 'Helps counter the heavy-air feeling from offices, traffic, pollution, and closed spaces.',
-      },
-      {
-        title: 'Instant Refresh',
-        desc: 'Quick oxygen boost that helps you feel lighter, clearer, and energised within seconds.',
-      },
-      {
-        title: 'Clear Focus',
-        desc: 'Refreshing breaths help reduce foggy-head feeling after stress or fatigue.',
-      },
-    ],
-  },
-  {
     id: 'performance',
     label: 'Performance Benefits',
     items: [
@@ -137,6 +115,28 @@ export const benefitGroups = [
       {
         title: 'Recover Faster',
         desc: 'Supports quicker breathing comfort after workouts, stress, and long days.',
+      },
+    ],
+  },
+  {
+    id: 'lifestyle',
+    label: 'Lifestyle Benefits',
+    items: [
+      {
+        title: 'Travel Recovery / Jet Lag',
+        desc: 'Supports faster recovery from flights, road trips, altitude changes, and long journeys.',
+      },
+      {
+        title: 'Supports Urban Lifestyle',
+        desc: 'Helps counter the heavy-air feeling from offices, traffic, pollution, and closed spaces.',
+      },
+      {
+        title: 'Instant Refresh',
+        desc: 'Quick oxygen boost that helps you feel lighter, clearer, and energised within seconds.',
+      },
+      {
+        title: 'Clear Focus',
+        desc: 'Refreshing breaths help reduce foggy-head feeling after stress or fatigue.',
       },
     ],
   },
