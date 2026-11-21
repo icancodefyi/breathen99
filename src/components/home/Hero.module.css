@@ -160,58 +160,120 @@
   padding: clamp(40px, 6vw, 96px) 0 clamp(72px, 9vw, 140px);
 }
 
-.introGrid {
+/* The five forces: one ruled row of large words */
+.forces {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px 0;
+  margin: 0 0 clamp(40px, 6vw, 88px);
+  padding: clamp(20px, 2.6vw, 34px) 0;
+  list-style: none;
+  border-top: 1px solid var(--c-line);
+  border-bottom: 1px solid var(--c-line);
+}
+.forces li {
+  flex: 1 1 auto;
+  padding: 0 clamp(12px, 2vw, 32px);
+  border-left: 1px solid var(--c-line);
+  font-size: clamp(1.35rem, 3.1vw, 3rem);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+  color: var(--c-ink);
+  text-align: center;
+}
+.forces li:first-child {
+  padding-left: 0;
+  border-left: 0;
+  text-align: left;
+}
+.forces li:last-child {
+  padding-right: 0;
+  text-align: right;
+}
+
+/* Before / after: the problem on a light card, the answer on a dark one */
+.compare {
   display: grid;
-  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
-  gap: clamp(32px, 6vw, 112px);
-  align-items: start;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(12px, 1.6vw, 20px);
+}
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  min-height: clamp(340px, 34vw, 480px);
+  padding: clamp(28px, 3.4vw, 48px);
+  border-radius: var(--radius-card);
+}
+.before {
+  background: var(--c-surface);
+  color: var(--c-ink);
+}
+.after {
+  background: var(--c-ink);
+  color: #fff;
 }
 
 .lede {
   margin: 0;
-  max-width: 24em;
-  font-size: clamp(1.55rem, 2.7vw, 2.55rem);
-  font-weight: 450;
-  line-height: 1.18;
-  letter-spacing: -0.03em;
+  max-width: 11em;
+  font-size: clamp(2rem, 3.8vw, 3.5rem);
+  font-weight: 500;
+  line-height: 1.04;
+  letter-spacing: -0.045em;
+  text-wrap: balance;
+}
+.lede span {
   color: var(--c-ink-3);
 }
-.lede strong {
-  font-weight: 500;
-  color: var(--c-ink);
-}
 
-.facts {
-  display: flex;
-  flex-direction: column;
-  gap: clamp(24px, 3vw, 40px);
-}
-
-.trust {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+.body {
   margin: 0;
-  padding: 0;
-  list-style: none;
-  border-top: 1px solid var(--c-line);
+  max-width: 17em;
+  font-size: clamp(1.4rem, 2.1vw, 2rem);
+  font-weight: 450;
+  line-height: 1.22;
+  letter-spacing: -0.03em;
 }
-.trust li {
+.pledge {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 0;
+  margin: 0;
+  font-size: 0.98rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+.pledge span,
+.pledge strong {
+  padding-right: 16px;
+  margin-right: 16px;
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+}
+.pledge strong {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  font-weight: 500;
+  color: #fff;
+}
+
+/* the signal: draining on the left, restored on the right */
+.meter {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 16px 12px 16px 0;
-  border-bottom: 1px solid var(--c-line);
-  font-size: 0.95rem;
-  font-weight: 450;
-  letter-spacing: -0.01em;
-  color: var(--c-ink);
+  gap: 4px;
+  height: clamp(44px, 5vw, 64px);
+  margin-top: auto;
 }
-.trust li::before {
-  content: '';
-  flex: none;
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
+.meter span {
+  flex: 1 1 0;
+  min-width: 1px;
+  border-radius: 999px;
+  background: var(--c-ink);
+}
+.after .meter span {
   background: var(--c-red);
 }
 
@@ -313,8 +375,17 @@
     position: static;
     margin-top: 14px;
   }
-  .introGrid {
+  .compare {
     grid-template-columns: 1fr;
+  }
+  .forces li {
+    flex: 0 0 50%;
+    padding: 0;
+    border-left: 0;
+    text-align: left;
+  }
+  .forces li:last-child {
+    text-align: left;
   }
 }
 

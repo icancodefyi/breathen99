@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
+import { withTm } from '@/components/ui/Tm';
 import styles from './UseCases.module.css';
 
 interface UseCase {
@@ -73,7 +74,7 @@ export default function UseCases({ items }: { items: UseCase[] }) {
                 </h3>
                 <div className={styles.detail}>
                   <div className={styles.detailInner}>
-                    <p className={styles.desc}>{c.desc}</p>
+                    <p className={styles.desc}>{withTm(c.desc)}</p>
                     <ul className={styles.points}>
                       {c.list.map((l) => (
                         <li key={l}>{l}</li>

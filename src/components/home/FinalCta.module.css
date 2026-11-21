@@ -72,3 +72,7 @@
 .can img {
   object-fit: contain;
 }
+
+.headline span {
+  color: rgba(255, 255, 255, 0.72);
+}

@@ -277,21 +277,20 @@
   }
 }
 
-/* ---------- Intro row: a two-part statement on the same 12-column grid as the rest of the section ---------- */
+/* ---------- Intro: statement on the left, the can resting on faint breathing rings (no container, so it does not stack on the panel above) ---------- */
 .intro {
   display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  column-gap: clamp(20px, 3vw, 40px);
-  row-gap: 28px;
-  align-items: end;
-  margin: clamp(56px, 8vw, 112px) 0 0;
-  padding-top: clamp(24px, 3vw, 40px);
-  border-top: 1px solid var(--c-line);
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  align-items: stretch;
+  margin: clamp(72px, 9vw, 128px) 0 0;
 }
-.introMain {
-  grid-column: 1 / span 7;
-  display: grid;
-  gap: 28px;
+.introCopy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: clamp(20px, 2.4vw, 28px);
+  padding: clamp(8px, 2vw, 32px) clamp(0px, 3vw, 48px) clamp(8px, 2vw, 32px) 0;
 }
 .scale {
   display: grid;
@@ -319,31 +318,13 @@
 }
 .introTitle {
   margin: 0;
+  max-width: 14em;
   font-size: clamp(1.9rem, 4.2vw, 3.7rem);
   font-weight: 500;
   line-height: 1.05;
   letter-spacing: -0.04em;
   color: var(--c-ink);
   text-wrap: balance;
-}
-.tile {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  border-radius: calc(var(--radius-card) - 4px);
-  background: radial-gradient(70% 70% at 50% 40%, #ffffff 0%, var(--c-surface) 75%);
-  overflow: hidden;
-}
-.tile img {
-  object-fit: contain;
-  padding: 14% 22%;
-  filter: drop-shadow(0 22px 24px rgba(40, 20, 12, 0.18));
-}
-.introSide {
-  grid-column: 9 / span 4;
-  display: grid;
-  gap: 22px;
-  justify-items: start;
 }
 .introText {
   margin: 0;
@@ -353,9 +334,35 @@
   max-width: 26em;
 }
 
+.introArt {
+  position: relative;
+  min-height: clamp(280px, 34vw, 460px);
+}
+/* faint concentric rings: the breath spreading outward */
+.introArt::before {
+  content: '';
+  position: absolute;
+  inset: -20% -10%;
+  background: repeating-radial-gradient(circle at 50% 50%, transparent 0 38px, var(--c-line-strong) 38px 39px);
+  -webkit-mask-image: radial-gradient(circle at 50% 50%, #000 8%, transparent 62%);
+  mask-image: radial-gradient(circle at 50% 50%, #000 8%, transparent 62%);
+}
+.introArt img {
+  object-fit: contain;
+  padding: 9% 12%;
+  transform: rotate(-9deg);
+  filter: drop-shadow(0 28px 28px rgba(40, 20, 12, 0.2));
+}
+
 @media (max-width: 900px) {
-  .introMain,
-  .introSide {
-    grid-column: 1 / -1;
+  .intro {
+    grid-template-columns: 1fr;
   }
+  .introArt {
+    min-height: 300px;
+  }
+}
+
+.introTitle span {
+  color: var(--c-ink-3);
 }

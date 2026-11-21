@@ -111,14 +111,10 @@
 
 /* Oversized wordmark sign-off, cropped by the page edge */
 .mark {
-  margin: clamp(8px, 2vw, 24px) 0 0;
-  font-size: clamp(5rem, 22vw, 20rem);
-  font-weight: 600;
-  line-height: 0.8;
-  letter-spacing: -0.06em;
-  color: var(--c-ink);
-  transform: translateY(12%);
-  white-space: nowrap;
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: clamp(8px, 2vw, 24px) 0 calc(-1 * clamp(2px, 0.3vw, 5px));
 }
 
 @media (max-width: 900px) {

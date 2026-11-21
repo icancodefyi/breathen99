@@ -1,4 +1,6 @@
 import Link from 'next/link';
+import Image from 'next/image';
+import { Tm } from '@/components/ui/Tm';
 import { siteConfig } from '@/config/site';
 import styles from './SiteFooter.module.css';
 
@@ -36,6 +38,7 @@ export default function SiteFooter() {
           <div className={styles.brand}>
             <span className={styles.logo}>
               breath<span className={styles.en}>EN</span>
+              <Tm />
             </span>
             <p className={styles.blurb}>
               The world&apos;s first nose breathing oxygen canister. 99% pure recreational oxygen for urban living,
@@ -71,8 +74,14 @@ export default function SiteFooter() {
 
           <nav className={styles.col} aria-label="Quick links">
             <h4 className={styles.colTitle}>Quick Links</h4>
-            <a href="#about">About breathEN</a>
-            <a href="#why">Why breathEN</a>
+            <a href="#about">
+              About breathEN
+              <Tm />
+            </a>
+            <a href="#why">
+              Why breathEN
+              <Tm />
+            </a>
             <a href="#product">Product Details</a>
             <a href="#testimonials">Testimonials</a>
             <a href="#faq">FAQ</a>
@@ -83,7 +92,10 @@ export default function SiteFooter() {
         </div>
 
         <div className={styles.bottom}>
-          <span>© 2026 breathEN · Recreational Oxygen · Navi Mumbai, India</span>
+          <span>
+            © 2026 breathEN
+            <Tm /> · Recreational Oxygen · Navi Mumbai, India
+          </span>
           <div className={styles.bottomLinks}>
             <a href="#faq">FAQ</a>
             <a href={`mailto:${siteConfig.contact.email}`}>Contact</a>
@@ -97,9 +109,14 @@ export default function SiteFooter() {
           </div>
         </div>
 
-        <p className={styles.mark} aria-hidden="true">
-          breath<span className={styles.en}>EN</span>
-        </p>
+        <Image
+          src="/assets/brand/logo-mark.png"
+          alt=""
+          width={1331}
+          height={265}
+          className={styles.mark}
+          sizes="(max-width: 1280px) 100vw, 1280px"
+        />
       </div>
     </footer>
   );

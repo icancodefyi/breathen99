@@ -1,9 +1,10 @@
 'use client';
 import { Fragment, useEffect, useRef } from 'react';
 import styles from './AboutStatement.module.css';
+import { Tm } from '@/components/ui/Tm';
 
 /** The headline, split into words so each can light up as the visitor scrolls. */
-const WORDS: Array<{ text: string; en?: boolean }> = [
+const WORDS: Array<{ text: string; en?: boolean; red?: boolean }> = [
   { text: 'We' },
   { text: 'Built' },
   { text: 'breath', en: true }, // rendered as breath + red EN
@@ -72,10 +73,11 @@ export default function AboutStatement() {
           <h2 id="about-title" className={styles.title}>
             {WORDS.map((w, i) => (
               <Fragment key={w.text}>
-                <span data-word className={styles.word}>
+                <span data-word className={w.red ? `${styles.word} ${styles.en}` : styles.word}>
                   {w.en ? (
                     <>
                       breath<span className={styles.en}>EN</span>
+                      <Tm />
                     </>
                   ) : (
                     w.text

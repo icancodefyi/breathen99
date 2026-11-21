@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Button from '@/components/ui/Button';
 import Reveal from '@/components/ui/Reveal';
 import styles from './FinalCta.module.css';
+import { Tm } from '@/components/ui/Tm';
 
 export default function FinalCta() {
   return (
@@ -11,11 +12,12 @@ export default function FinalCta() {
           <div className={styles.glow} aria-hidden="true" />
           <p className={styles.eyebrow}>The next breath changes everything</p>
           <h2 id="cta-title" className={styles.headline}>
-            Breathe Better.
+            Breathe <span>Better.</span>
           </h2>
           <h3 className={styles.sub}>Live Stronger.</h3>
-          <Button href="/checkout" variant="light">
-            Get breathEN Now
+          <Button href="/checkout" variant="primary">
+            Get breathEN
+            <Tm /> Now
           </Button>
           <div className={styles.can}>
             <Image src="/assets/brand/shots/can-cta.png" alt="" fill sizes="560px" />

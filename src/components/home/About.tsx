@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Button from '@/components/ui/Button';
 import Reveal from '@/components/ui/Reveal';
+import { Tm } from '@/components/ui/Tm';
 import AboutStatement from './AboutStatement';
 import styles from './About.module.css';
 
@@ -11,7 +12,7 @@ export default function About() {
 
       <div className="ds-container">
         <Reveal className={styles.intro}>
-          <div className={styles.introMain}>
+          <div className={styles.introCopy}>
             <span className={styles.scale} aria-hidden="true">
               <span />
               <span />
@@ -19,22 +20,24 @@ export default function About() {
               <span />
               <span />
             </span>
-            <h3 className={styles.introTitle}>breathEN is not a replacement for nature —</h3>
-          </div>
-          <div className={styles.introSide}>
-            <div className={styles.tile}>
-              <Image src="/assets/brand/shots/can-side.png" alt="" fill sizes="(max-width: 900px) 100vw, 33vw" />
-            </div>
+            <h3 className={styles.introTitle}>
+              breathEN
+              <Tm /> is not a replacement for <span>nature</span>
+            </h3>
             <p className={styles.introText}>It is a companion, designed to assist the body with comfortable breaths.</p>
-            <Button href="/about" variant="link" arrow>
+            <Button href="/about" variant="dark" arrow>
               Read our story
             </Button>
+          </div>
+          <div className={styles.introArt} aria-hidden="true">
+            <Image src="/assets/brand/shots/can-side.png" alt="" fill sizes="(max-width: 900px) 100vw, 40vw" />
           </div>
         </Reveal>
 
         <Reveal className={styles.quote}>
           <p className={styles.truth}>
-            At breathEN, we believe in a simple truth:{' '}
+            At breathEN
+            <Tm />, we believe in a simple truth:{' '}
             <strong>You don&apos;t need to be superhuman. You just want to feel well enough to show up.</strong>
           </p>
           <p className={styles.tagline}>&ldquo;Breathe better, live Smarter. #breathEN&rdquo;</p>

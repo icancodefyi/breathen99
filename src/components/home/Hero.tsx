@@ -1,10 +1,14 @@
 import Image from 'next/image';
 import type { CSSProperties } from 'react';
 import Button from '@/components/ui/Button';
+import Reveal from '@/components/ui/Reveal';
+import { Tm } from '@/components/ui/Tm';
 import styles from './Hero.module.css';
 
 /** Stagger index for the entrance animation. */
 const step = (i: number) => ({ '--i': i }) as CSSProperties;
+
+const FORCES = ['Pollution.', 'Fatigue.', 'Recovery.', 'Altitude.', 'Stress.'];
 
 export type HeroLayout = 'overlap' | 'stagger';
 
@@ -47,10 +51,10 @@ export default function Hero({ layout = 'overlap' }: { layout?: HeroLayout }) {
         </p>
 
         <div className={`${styles.ctas} ${styles.rise}`} style={step(4)}>
-          <Button href="/checkout" variant="light">
+          <Button href="/checkout" variant="primary">
             Buy Now
           </Button>
-          <Button href="https://www.youtube.com/shorts/T9LWqEXDPhE" variant="link" external arrow>
+          <Button href="https://www.youtube.com/shorts/T9LWqEXDPhE" variant="ghost" external arrow>
             Watch How It Works
           </Button>
         </div>
@@ -58,22 +62,43 @@ export default function Hero({ layout = 'overlap' }: { layout?: HeroLayout }) {
 
       <div className={styles.intro}>
         <div className="ds-container">
-          <div className={styles.introGrid}>
-            <p className={styles.lede}>
-              Pollution. Fatigue. Recovery. Altitude. Stress. Your body loses oxygen silently every day. breathEN
-              delivers 99% pure recreational oxygen — instantly, safely, anywhere.{' '}
-              <strong>No prescription. No side effects. Just breath.</strong>
-            </p>
+          <Reveal>
+            <ul className={styles.forces} aria-label="What drains your oxygen">
+              {FORCES.map((f) => (
+                <li key={f}>{f}</li>
+              ))}
+            </ul>
+          </Reveal>
 
-            <div className={styles.facts}>
-              <ul className={styles.trust}>
-                <li>99% Pure O₂</li>
-                <li>Zero Side Effects</li>
-                <li>Upto 200 Shots per Can</li>
-                <li>Trusted by Fire Officers</li>
-              </ul>
+          <Reveal className={styles.compare}>
+            <div className={`${styles.panel} ${styles.before}`}>
+              <p className={styles.lede}>
+                Your body loses oxygen <span>silently every day.</span>
+              </p>
+              <div className={styles.meter} aria-hidden="true">
+                {Array.from({ length: 36 }, (_, i) => (
+                  <span key={i} style={{ height: `${100 - i * 2.4}%`, opacity: 1 - i / 50 }} />
+                ))}
+              </div>
             </div>
-          </div>
+
+            <div className={`${styles.panel} ${styles.after}`}>
+              <p className={styles.body}>
+                breathEN
+                <Tm /> delivers 99% pure recreational oxygen — instantly, safely, anywhere.
+              </p>
+              <p className={styles.pledge}>
+                <span>No prescription.</span>
+                <span>No side effects.</span>
+                <strong>Just breath.</strong>
+              </p>
+              <div className={styles.meter} aria-hidden="true">
+                {Array.from({ length: 36 }, (_, i) => (
+                  <span key={i} style={{ height: `${30 + i * 2}%`, opacity: 0.35 + i * 0.0186 }} />
+                ))}
+              </div>
+            </div>
+          </Reveal>
         </div>
       </div>
     </>

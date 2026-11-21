@@ -12,7 +12,9 @@ export default function Product() {
         <Reveal>
           <span className={styles.label}>The Product</span>
           <h2 id="product-title" className={styles.title}>
-            Everything You Need. <span>Nothing You Don&apos;t.</span>
+            Everything You Need.
+            <br />
+            <span>Nothing</span> You Don&apos;t.
           </h2>
         </Reveal>
 
@@ -69,7 +71,7 @@ export default function Product() {
         <Reveal className={styles.howto}>
           <span className={styles.label}>Instructions for Use</span>
           <h3 className={styles.subTitle}>
-            Simple as <span>Taking a Breath.</span>
+            Simple as Taking a <span>Breath.</span>
           </h3>
           <ol className={styles.steps}>
             {howToSteps.map((s) => (

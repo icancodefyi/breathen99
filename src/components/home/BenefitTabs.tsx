@@ -1,6 +1,7 @@
 'use client';
 import { useId, useState, type CSSProperties, type KeyboardEvent } from 'react';
 import styles from './Product.module.css';
+import { withTm } from '@/components/ui/Tm';
 
 interface Group {
   id: string;
@@ -59,8 +60,8 @@ export default function BenefitTabs({ groups }: { groups: Group[] }) {
               <li key={it.title} className={styles.tile} style={{ '--i': k } as CSSProperties}>
                 <span className={styles.tileIndex}>{String(k + 1).padStart(2, '0')}</span>
                 <div>
-                  <h4 className={styles.tileTitle}>{it.title}</h4>
-                  <p className={styles.tileDesc}>{it.desc}</p>
+                  <h4 className={styles.tileTitle}>{withTm(it.title)}</h4>
+                  <p className={styles.tileDesc}>{withTm(it.desc)}</p>
                 </div>
               </li>
             ))}

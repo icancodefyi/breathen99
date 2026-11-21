@@ -79,7 +79,7 @@ export default function Nav() {
           <ul className={`${styles.group} ${styles.groupEnd}`}>
             {RIGHT.map(item)}
             <li>
-              <Button href="/checkout" variant="dark" size="sm">
+              <Button href="/checkout" variant="primary" size="sm">
                 Buy Now
               </Button>
             </li>

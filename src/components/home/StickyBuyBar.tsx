@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import Button from '@/components/ui/Button';
 import styles from './StickyBuyBar.module.css';
+import { Tm } from '@/components/ui/Tm';
 
 /** Mobile buy bar: visible once the hero has left the screen, hidden again over the final call to action. */
 export default function StickyBuyBar() {
@@ -38,13 +39,16 @@ export default function StickyBuyBar() {
   return (
     <div className={styles.bar} data-visible={visible} inert={!visible} aria-hidden={!visible}>
       <div className={styles.text}>
-        <strong className={styles.name}>breathEN Oxygen</strong>
+        <strong className={styles.name}>
+          breathEN
+          <Tm /> Oxygen
+        </strong>
         <span className={styles.price}>
           <span className={styles.mrp}>₹900</span>
           <span>₹495</span>
         </span>
       </div>
-      <Button href="/checkout" variant="dark" size="sm">
+      <Button href="/checkout" variant="primary" size="sm">
         Buy Now — ₹495
       </Button>
     </div>

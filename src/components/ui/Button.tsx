@@ -4,7 +4,7 @@ import styles from './Button.module.css';
 
 interface ButtonProps {
   href: string;
-  variant?: 'dark' | 'light' | 'primary' | 'link';
+  variant?: 'dark' | 'light' | 'primary' | 'link' | 'ghost';
   size?: 'md' | 'sm';
   /** Opens in a new tab (use for off-site links). */
   external?: boolean;

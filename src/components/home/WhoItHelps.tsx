@@ -3,6 +3,7 @@ import Reveal from '@/components/ui/Reveal';
 import { whyBenefits, whyCards } from '@/content/home';
 import UseCases from './UseCases';
 import styles from './WhoItHelps.module.css';
+import { Tm } from '@/components/ui/Tm';
 
 function Check() {
   return (
@@ -19,13 +20,16 @@ export default function WhoItHelps() {
     <section id="why" className={styles.why} aria-labelledby="why-title">
       <div className="ds-container">
         <Reveal className={styles.head}>
-          <span className={styles.label}>Who breathEN Helps</span>
+          <span className={styles.label}>
+            Who breathEN
+            <Tm /> Helps
+          </span>
           <h2 id="why-title" className={styles.title}>
-            One Product. <span>Five Real Needs.</span>
+            One Product. <span>Five</span> Real Needs.
           </h2>
           <p className={styles.sub}>
             Whether you&apos;re ascending a mountain, managing a deadline, or supporting an elderly parent — breathEN
-            delivers 99% pure oxygen when your body needs it most.
+            <Tm /> delivers 99% pure oxygen when your body needs it most.
           </p>
         </Reveal>
       </div>
@@ -43,7 +47,10 @@ export default function WhoItHelps() {
                 sizes="(max-width: 900px) 100vw, 40vw"
               />
             </div>
-            <figcaption className={styles.caption}>breathEN — 99% Pure Recreational Oxygen</figcaption>
+            <figcaption className={styles.caption}>
+              breathEN
+              <Tm /> — 99% Pure Recreational Oxygen
+            </figcaption>
           </figure>
 
           <div className={styles.copy}>
@@ -53,8 +60,9 @@ export default function WhoItHelps() {
               FIVE LIVES.
             </h3>
             <p className={styles.tagline}>
-              breathEN is not a medical device — it is a companion designed to give your body comfortable breaths when
-              the air around you simply isn&apos;t enough.
+              breathEN
+              <Tm /> is not a medical device — it is a companion designed to give your body comfortable breaths when the
+              air around you simply isn&apos;t enough.
             </p>
             <ul className={styles.benefits}>
               {whyBenefits.map((b) => (

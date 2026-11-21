@@ -74,6 +74,15 @@ body {
   color: #fff;
 }
 
+.ds-tm {
+  margin-left: 0.1em;
+  font-size: 0.42em;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 0;
+  vertical-align: super;
+}
+
 .ds-container {
   width: 100%;
   max-width: var(--container);

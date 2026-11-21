@@ -2,6 +2,7 @@ import Button from '@/components/ui/Button';
 import Reveal from '@/components/ui/Reveal';
 import { testimonials } from '@/content/home';
 import styles from './Testimonials.module.css';
+import { Tm, withTm } from '@/components/ui/Tm';
 
 const initials = (name: string) =>
   name
@@ -20,6 +21,7 @@ export default function Testimonials() {
           <span className={styles.label}>Real People. Real Breath.</span>
           <h2 id="testimonials-title" className={styles.title}>
             What They Say About breath<span className={styles.en}>EN</span>
+            <Tm />
           </h2>
         </Reveal>
 
@@ -27,7 +29,7 @@ export default function Testimonials() {
           {testimonials.map((t) => (
             <figure key={t.name} className={styles.card}>
               <blockquote style={{ margin: 0 }}>
-                <p className={styles.cardText}>{t.text}</p>
+                <p className={styles.cardText}>{withTm(t.text)}</p>
               </blockquote>
               <figcaption className={styles.who}>
                 <span className={styles.avatar} aria-hidden="true">
@@ -35,7 +37,7 @@ export default function Testimonials() {
                 </span>
                 <span>
                   <cite className={styles.name}>{t.name}</cite>
-                  <span className={styles.role}>{t.title}</span>
+                  <span className={styles.role}>{withTm(t.title)}</span>
                 </span>
                 {t.tag && <span className={styles.tag}>{t.tag}</span>}
               </figcaption>
@@ -45,8 +47,9 @@ export default function Testimonials() {
 
         <Reveal className={styles.band}>
           <p>Upto 200 Shots. Zero Side Effects. One Deep Breath Away.</p>
-          <Button href="/checkout" variant="light">
-            Order breathEN →
+          <Button href="/checkout" variant="primary">
+            Order breathEN
+            <Tm /> →
           </Button>
         </Reveal>
       </div>
