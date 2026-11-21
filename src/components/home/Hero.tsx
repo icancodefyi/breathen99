@@ -48,7 +48,7 @@ export default function Hero({ layout = 'overlap' }: { layout?: HeroLayout }) {
 
         <div className={`${styles.ctas} ${styles.rise}`} style={step(4)}>
           <Button href="/checkout" variant="light">
-            Buy Now — ₹495
+            Buy Now
           </Button>
           <Button href="https://www.youtube.com/shorts/T9LWqEXDPhE" variant="link" external arrow>
             Watch How It Works
@@ -66,12 +66,6 @@ export default function Hero({ layout = 'overlap' }: { layout?: HeroLayout }) {
             </p>
 
             <div className={styles.facts}>
-              <div className={styles.price}>
-                <span className={styles.mrp}>₹900</span>
-                <span className={styles.sale}>₹495</span>
-                <span className={styles.save}>45% OFF</span>
-              </div>
-
               <ul className={styles.trust}>
                 <li>99% Pure O₂</li>
                 <li>Zero Side Effects</li>

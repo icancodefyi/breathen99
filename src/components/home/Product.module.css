@@ -279,19 +279,19 @@
   box-shadow: 0 0 0 6px var(--c-bg);
 }
 .step:nth-child(1) .stepDot {
-  background: var(--b-1);
+  background: var(--b-5);
 }
 .step:nth-child(2) .stepDot {
-  background: var(--b-2);
+  background: var(--b-4);
 }
 .step:nth-child(3) .stepDot {
   background: var(--b-3);
 }
 .step:nth-child(4) .stepDot {
-  background: var(--b-4);
+  background: var(--b-2);
 }
 .step:nth-child(5) .stepDot {
-  background: var(--b-5);
+  background: var(--b-1);
 }
 .stepTitle {
   margin: 22px 0 8px;

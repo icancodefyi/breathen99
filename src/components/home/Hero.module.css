@@ -187,37 +187,6 @@
   gap: clamp(24px, 3vw, 40px);
 }
 
-.price {
-  display: flex;
-  align-items: baseline;
-  flex-wrap: wrap;
-  gap: 6px 16px;
-}
-.mrp {
-  font-size: 1.15rem;
-  color: var(--c-ink-3);
-  text-decoration: line-through;
-  text-decoration-thickness: 1px;
-}
-.sale {
-  font-size: clamp(3.4rem, 6vw, 5.6rem);
-  font-weight: 500;
-  line-height: 0.95;
-  letter-spacing: -0.05em;
-  color: var(--c-ink);
-}
-.save {
-  align-self: center;
-  padding: 6px 12px;
-  border-radius: 999px;
-  background: var(--c-surface);
-  font-size: 0.74rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--c-red);
-}
-
 .trust {
   display: grid;
   grid-template-columns: 1fr 1fr;
